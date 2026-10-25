@@ -1,0 +1,568 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10101b">
+  <title>Alex's Fruit Shop | Blox Fruits</title>
+  <style>
+    :root {
+      --bg: #10101b;
+      --panel: #1b1b2b;
+      --purple: #9b72ff;
+      --pink: #ff65b8;
+      --text: #f8f7ff;
+      --muted: #b9b7ce;
+      --green: #53e0a0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+
+    header {
+      padding: 18px 16px;
+      background: #171725;
+      border-bottom: 1px solid #343149;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand { font-size: 19px; font-weight: 900; }
+    .brand span { color: var(--purple); }
+    .cart-button, .primary, .secondary {
+      border: 0;
+      border-radius: 12px;
+      padding: 11px 15px;
+      font-weight: 800;
+    }
+
+    .cart-button, .primary {
+      background: var(--purple);
+      color: white;
+    }
+
+    .secondary {
+      background: #302b47;
+      color: white;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+
+    main { max-width: 1100px; margin: auto; padding: 22px 15px 50px; }
+
+    .hero {
+      background: linear-gradient(135deg, #35245d, #202044 60%, #51264b);
+      padding: 30px 20px;
+      border-radius: 22px;
+      margin-bottom: 28px;
+      border: 1px solid #514078;
+    }
+
+    .tag {
+      color: #e1d5ff;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    h1 { font-size: clamp(30px, 7vw, 48px); margin: 12px 0; }
+    .hero p { color: #e1dcef; line-height: 1.6; margin-bottom: 0; }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin: 24px 0 16px;
+    }
+
+    h2 { font-size: 23px; margin: 0; }
+    .muted { color: var(--muted); font-size: 13px; }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .product {
+      background: var(--panel);
+      border: 1px solid #343149;
+      border-radius: 17px;
+      padding: 13px;
+      min-width: 0;
+    }
+
+    .fruit-art {
+      height: 105px;
+      border-radius: 13px;
+      background: radial-gradient(circle at 50% 35%, #4b3c79, #25233b);
+      display: grid;
+      place-items: center;
+      font-size: 55px;
+      margin-bottom: 12px;
+    }
+
+    .product h3 { font-size: 16px; margin: 5px 0; }
+    .price { font-size: 19px; font-weight: 900; color: var(--green); margin: 10px 0; }
+    .stock { color: var(--muted); font-size: 12px; margin-bottom: 12px; }
+    .product .primary { width: 100%; padding: 10px 5px; font-size: 13px; }
+    button:disabled { opacity: .45; cursor: not-allowed; }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid #343149;
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 22px;
+    }
+
+    .cart-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid #39364c;
+      padding: 13px 0;
+    }
+
+    .cart-line:last-child { border-bottom: 0; }
+    .qty { display: flex; align-items: center; gap: 10px; }
+    .qty button {
+      background: #39304f;
+      color: white;
+      border: 0;
+      border-radius: 8px;
+      width: 30px;
+      height: 30px;
+    }
+
+    label { display: block; margin: 16px 0 7px; font-weight: 700; font-size: 14px; }
+
+    input {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #48435e;
+      background: #11111d;
+      color: white;
+      padding: 13px;
+      outline-color: var(--purple);
+    }
+
+    .total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
+      font-weight: 900;
+      margin: 18px 0;
+    }
+
+    .wide { width: 100%; margin-top: 10px; }
+    .notice {
+      background: #29253d;
+      border-left: 3px solid var(--purple);
+      border-radius: 8px;
+      padding: 12px;
+      color: #e3def3;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-top: 14px;
+    }
+
+    #payment { display: none; }
+    #qrImage { display: none; width: 210px; max-width: 100%; background: white; padding: 10px; border-radius: 12px; margin: 15px auto; }
+    .center { text-align: center; }
+    footer { text-align: center; color: var(--muted); padding: 25px 10px; font-size: 12px; }
+
+    @media (min-width: 650px) {
+      .products { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+      .hero { padding: 42px; }
+      .fruit-art { height: 145px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">🍇 ALEX'S <span>FRUIT SHOP</span></div>
+      <button class="cart-button" onclick="goToCart()">
+        🛒 Cart (<span id="cartCount">0</span>)
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="tag">YOUR NEXT ADVENTURE STARTS HERE</div>
+      <h1>Blox Fruits Shop ⚔️</h1>
+      <p>Explore the shop, choose your items, and follow the checkout instructions. Join our Discord for order assistance.</p>
+    </section>
+
+    <div class="section-title">
+      <h2>🔥 Featured Items</h2>
+      <span class="muted">Prices in INR (₹)</span>
+    </div>
+
+    <section class="products" id="products"></section>
+
+    <section class="panel" id="cart">
+      <h2>🛒 Your Cart</h2>
+      <div id="cartItems"></div>
+      <div class="total">
+        <span>Total</span>
+        <span id="total">₹0</span>
+      </div>
+
+      <form id="checkoutForm">
+        <label for="roblox">Your Roblox username</label>
+        <input id="roblox" name="roblox" placeholder="Enter your Roblox username"
+               required maxlength="50" autocomplete="off">
+
+        <label for="contact">Discord username (optional)</label>
+        <input id="contact" name="contact" placeholder="Your Discord username"
+               maxlength="80" autocomplete="off">
+
+        <button class="primary wide" type="submit">Continue to Payment</button>
+      </form>
+
+      <div class="notice">
+        Please check your order and total before paying. Payment is not automatically verified by this website.
+      </div>
+    </section>
+
+    <section class="panel" id="payment">
+      <h2>💳 Payment Instructions</h2>
+      <p>Order summary:</p>
+      <div id="orderSummary"></div>
+      <p class="total"><span>Amount to pay</span><span id="payAmount">₹0</span></p>
+
+      <div class="center">
+        <img id="qrImage" alt="Your UPI payment QR code">
+        <p id="upiText"></p>
+        <a id="upiButton" class="secondary" href="#" style="display:none">Open UPI App</a>
+      </div>
+
+      <div class="notice">
+        1. Pay the exact amount shown above.<br>
+        2. Save your payment screenshot or receipt.<br>
+        3. Open Discord using the button below.<br>
+        4. Create a ticket and send your Roblox username, order details, and payment proof.<br><br>
+        Wait for a human confirmation. Clicking the Discord button does not confirm payment.
+      </div>
+
+      <a id="discordButton" class="primary wide" href="#" target="_blank"
+         rel="noopener noreferrer" style="display:block;text-align:center;text-decoration:none">
+        Open Discord &amp; Submit Proof
+      </a>
+      <button class="secondary wide" onclick="backToCart()">Back to Cart</button>
+    </section>
+  </main>
+
+  <footer>
+    Fan-made shop website. Not affiliated with or endorsed by Roblox or the Blox Fruits creators.
+  </footer>
+
+  <script>
+    /*
+      SHOP SETTINGS
+      Edit the products, prices and stock below.
+      Set your own UPI ID, QR image URL and Discord invite before publishing.
+    */
+
+    const SHOP = {
+      name: "Alex's Fruit Shop",
+
+      // Example: alex123@upi — replace with YOUR actual UPI ID.
+      upiId: "",
+
+      // Optional: direct image URL of your own UPI QR code.
+      // Leave blank until you have added your QR image.
+      qrImageUrl: "",
+
+      // Example: https://discord.gg/yourInviteCode
+      discordInvite: ""
+    };
+
+    /*
+      SAMPLE PRODUCTS
+      Change these examples to your real items and prices.
+      stock is the quantity currently available.
+      image can be an emoji or a public image URL.
+    */
+    const products = [
+      { id: 1, name: "Kitsune", price: 360, stock: 10, image: "🦊", description: "Kitsune fruit" },
+      { id: 2, name: "Donation", price: 1, stock: 100, image: "💎", description: "Support the shop" },
+      { id: 3, name: "Dragon", price: 300, stock: 5, image: "🐉", description: "Dragon fruit" },
+      { id: 4, name: "Leopard", price: 250, stock: 5, image: "🐆", description: "Leopard fruit" },
+      { id: 5, name: "Dough", price: 150, stock: 8, image: "🍩", description: "Dough fruit" },
+      { id: 6, name: "Buddha", price: 80, stock: 12, image: "✨", description: "Buddha fruit" }
+    ];
+
+    // Cart is stored only in this browser on this device.
+    let cart = {};
+
+    try {
+      cart = JSON.parse(localStorage.getItem("alexFruitCart") || "{}") || {};
+    } catch (error) {
+      cart = {};
+    }
+
+    let currentOrder = null;
+
+    function money(amount) {
+      return "₹" + Number(amount).toLocaleString("en-IN");
+    }
+
+    function saveCart() {
+      try {
+        localStorage.setItem("alexFruitCart", JSON.stringify(cart));
+      } catch (error) {
+        // The shop still works if browser storage is unavailable.
+      }
+    }
+
+    function safeText(value) {
+      return String(value).replace(/[&<>"']/g, function(char) {
+        return {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        }[char];
+      });
+    }
+
+    function productArt(product) {
+      if (/^https:\/\/[^ ]+$/i.test(product.image)) {
+        return '<img src="' + safeText(product.image) +
+          '" alt="" style="width:100%;height:100%;object-fit:contain">';
+      }
+      return safeText(product.image);
+    }
+
+    function renderProducts() {
+      document.getElementById("products").innerHTML = products.map(function(p) {
+        const inCart = Number(cart[p.id] || 0);
+        const remaining = Math.max(0, p.stock - inCart);
+
+        return `
+          <article class="product">
+            <div class="fruit-art">${productArt(p)}</div>
+            <h3>${safeText(p.name)}</h3>
+            <div class="muted">${safeText(p.description)}</div>
+            <div class="price">${money(p.price)}</div>
+            <div class="stock">${p.stock} in listed stock</div>
+            <button class="primary" ${remaining <= 0 ? "disabled" : ""}
+              onclick="addToCart(${p.id})">
+              ${remaining <= 0 ? "Out of available stock" : "Add to Cart"}
+            </button>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function addToCart(id) {
+      const product = products.find(function(p) { return p.id === id; });
+      if (!product) return;
+
+      const qty = Number(cart[id] || 0);
+      if (qty >= product.stock) {
+        alert("You have reached the listed stock limit.");
+        return;
+      }
+
+      cart[id] = qty + 1;
+      saveCart();
+      renderAll();
+    }
+
+    function changeQty(id, amount) {
+      const product = products.find(function(p) { return p.id === id; });
+      if (!product) return;
+
+      const next = Number(cart[id] || 0) + amount;
+      if (next <= 0) {
+        delete cart[id];
+      } else if (next <= product.stock) {
+        cart[id] = next;
+      } else {
+        alert("Not enough listed stock.");
+      }
+
+      saveCart();
+      renderAll();
+    }
+
+    function getItems() {
+      return products.filter(function(p) {
+        return Number(cart[p.id] || 0) > 0;
+      });
+    }
+
+    function getTotal() {
+      return getItems().reduce(function(sum, p) {
+        return sum + p.price * Number(cart[p.id] || 0);
+      }, 0);
+    }
+
+    function renderCart() {
+      const items = getItems();
+      const count = items.reduce(function(sum, p) {
+        return sum + Number(cart[p.id] || 0);
+      }, 0);
+
+      document.getElementById("cartCount").textContent = count;
+      document.getElementById("total").textContent = money(getTotal());
+
+      document.getElementById("cartItems").innerHTML = items.length
+        ? items.map(function(p) {
+            return `
+              <div class="cart-line">
+                <div>
+                  <strong>${safeText(p.name)}</strong><br>
+                  <span class="muted">${money(p.price)} each</span>
+                </div>
+                <div class="qty">
+                  <button type="button" aria-label="Remove one"
+                    onclick="changeQty(${p.id}, -1)">−</button>
+                  <span>${Number(cart[p.id])}</span>
+                  <button type="button" aria-label="Add one"
+                    onclick="changeQty(${p.id}, 1)">+</button>
+                </div>
+              </div>
+            `;
+          }).join("")
+        : '<p class="muted">Your cart is empty. Add an item to begin.</p>';
+
+      renderProducts();
+    }
+
+    function renderAll() {
+      renderCart();
+    }
+
+    function goToCart() {
+      document.getElementById("cart").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function backToCart() {
+      document.getElementById("payment").style.display = "none";
+      document.getElementById("cart").style.display = "block";
+      goToCart();
+    }
+
+    function setupPayment(order) {
+      document.getElementById("cart").style.display = "none";
+      document.getElementById("payment").style.display = "block";
+      document.getElementById("payAmount").textContent = money(order.total);
+
+      document.getElementById("orderSummary").innerHTML = order.items.map(function(item) {
+        return "<p>" + safeText(item.name) + " × " + item.qty +
+          " — " + money(item.price * item.qty) + "</p>";
+      }).join("") + "<p><strong>Roblox username:</strong> " +
+        safeText(order.roblox) + "</p>";
+
+      const qr = document.getElementById("qrImage");
+      if (SHOP.qrImageUrl.startsWith("https://")) {
+        qr.src = SHOP.qrImageUrl;
+        qr.style.display = "block";
+      } else {
+        qr.removeAttribute("src");
+        qr.style.display = "none";
+      }
+
+      document.getElementById("upiText").textContent = SHOP.upiId
+        ? "UPI ID: " + SHOP.upiId
+        : "The shop owner still needs to configure a UPI ID or QR code.";
+
+      const upiButton = document.getElementById("upiButton");
+      if (SHOP.upiId && /^[\w.-]+@[\w.-]+$/.test(SHOP.upiId)) {
+        const params = new URLSearchParams({
+          pa: SHOP.upiId,
+          pn: SHOP.name,
+          am: order.total.toFixed(2),
+          cu: "INR",
+          tn: "Blox Fruits shop order"
+        });
+        upiButton.href = "upi://pay?" + params.toString();
+        upiButton.style.display = "inline-block";
+      } else {
+        upiButton.style.display = "none";
+      }
+
+      const discordButton = document.getElementById("discordButton");
+      if (/^https:\/\/(discord\.gg|discord\.com\/invite)\//i.test(SHOP.discordInvite)) {
+        discordButton.href = SHOP.discordInvite;
+        discordButton.style.display = "block";
+      } else {
+        discordButton.href = "#";
+        discordButton.style.display = "block";
+        discordButton.onclick = function(event) {
+          event.preventDefault();
+          alert("The shop owner needs to add the Discord invite link in the SHOP settings in the code.");
+        };
+      }
+
+      document.getElementById("payment").scrollIntoView({ behavior: "smooth" });
+    }
+
+    document.getElementById("checkoutForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const items = getItems();
+      if (!items.length) {
+        alert("Your cart is empty. Please add an item first.");
+        return;
+      }
+
+      const roblox = document.getElementById("roblox").value.trim();
+      const contact = document.getElementById("contact").value.trim();
+
+      if (!roblox) {
+        alert("Please enter your Roblox username.");
+        return;
+      }
+
+      currentOrder = {
+        roblox: roblox,
+        contact: contact,
+        total: getTotal(),
+        items: items.map(function(p) {
+          return {
+            id: p.id,
+            name: p.name,
+            price: p.price,
+            qty: Number(cart[p.id])
+          };
+        })
+      };
+
+      setupPayment(currentOrder);
+    });
+
+    renderAll();
+  </script>
+</body>
+</html>
