@@ -1,735 +1,580 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090909">
-<title>Alex's Fruit Shop | Blox Fruits</title>
-
-<style>
-:root {
-  --bg: #090909;
-  --card: #151515;
-  --red: #ff3030;
-  --red-dark: #a90000;
-  --text: #ffffff;
-  --muted: #aaaaaa;
-  --border: #303030;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-header {
-  background: linear-gradient(135deg, #260000, #080808 65%);
-  border-bottom: 2px solid var(--red);
-  padding: 25px 15px;
-  text-align: center;
-}
-
-header h1 {
-  margin: 0;
-  color: var(--red);
-  font-size: clamp(26px, 5vw, 42px);
-  text-shadow: 0 0 15px #ff000055;
-}
-
-header p {
-  color: #ddd;
-  margin-bottom: 0;
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  padding: 14px;
-  background: #101010;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  border-bottom: 1px solid var(--border);
-}
-
-button, .button {
-  cursor: pointer;
-  border: 0;
-  border-radius: 8px;
-  padding: 10px 15px;
-  background: var(--red);
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-  display: inline-block;
-}
-
-button:hover, .button:hover {
-  background: #cc0000;
-}
-
-.category-btn {
-  background: #252525;
-  border: 1px solid #444;
-}
-
-.category-btn.active {
-  background: var(--red);
-  border-color: var(--red);
-}
-
-.container {
-  width: min(1200px, 94%);
-  margin: auto;
-}
-
-.section-title {
-  text-align: center;
-  margin: 30px 0 20px;
-  color: var(--red);
-}
-
-.notice {
-  margin: 20px auto;
-  padding: 14px;
-  background: #191919;
-  border: 1px solid #373737;
-  border-radius: 10px;
-  color: #ddd;
-  text-align: center;
-  line-height: 1.6;
-}
-
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
-  gap: 16px;
-  padding-bottom: 30px;
-}
-
-.product {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 13px;
-  text-align: center;
-  transition: transform .2s, border-color .2s;
-}
-
-.product:hover {
-  transform: translateY(-3px);
-  border-color: var(--red);
-}
-
-.fruit-art {
-  height: 140px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  border-radius: 9px;
-  background: #0c0c0c;
-  margin-bottom: 12px;
-}
-
-.fruit-art img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-}
-
-.fruit-emoji {
-  font-size: 65px;
-}
-
-.product h3 {
-  margin: 8px 0;
-  font-size: 17px;
-}
-
-.product p {
-  color: var(--muted);
-  font-size: 13px;
-  min-height: 30px;
-}
-
-.price {
-  color: #5cff85;
-  font-size: 18px;
-  font-weight: bold;
-  margin: 12px 0;
-}
-
-.stock {
-  color: #bbb;
-  font-size: 12px;
-  margin-bottom: 12px;
-}
-
-.product button {
-  width: 100%;
-}
-
-.layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr);
-  gap: 22px;
-  align-items: start;
-}
-
-.panel {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 18px;
-  margin-bottom: 22px;
-}
-
-.panel h2 {
-  margin-top: 0;
-  color: var(--red);
-}
-
-.cart-row {
-  display: flex;
-  gap: 8px;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.cart-row small {
-  color: var(--muted);
-}
-
-.quantity-controls {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-}
-
-.quantity-controls button {
-  padding: 5px 9px;
-}
-
-.total {
-  font-size: 22px;
-  font-weight: bold;
-  margin: 18px 0;
-  color: #5cff85;
-}
-
-label {
-  display: block;
-  margin: 12px 0 6px;
-  color: #ddd;
-}
-
-input, select, textarea {
-  width: 100%;
-  padding: 12px;
-  background: #090909;
-  color: white;
-  border: 1px solid #444;
-  border-radius: 7px;
-  font: inherit;
-}
-
-textarea {
-  min-height: 85px;
-  resize: vertical;
-}
-
-.full-button {
-  width: 100%;
-  margin-top: 10px;
-}
-
-.qr-image {
-  display: block;
-  width: min(100%, 300px);
-  margin: 15px auto;
-  border-radius: 10px;
-  background: white;
-}
-
-.hidden {
-  display: none !important;
-}
-
-.small {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.6;
-}
-
-.status {
-  padding: 12px;
-  background: #101010;
-  border: 1px solid #444;
-  border-radius: 8px;
-  margin-top: 12px;
-  overflow-wrap: anywhere;
-}
-
-footer {
-  border-top: 1px solid var(--border);
-  margin-top: 35px;
-  padding: 25px 12px;
-  text-align: center;
-  color: #999;
-  font-size: 13px;
-  line-height: 1.7;
-}
-
-@media (max-width: 700px) {
-  .layout {
-    grid-template-columns: 1fr;
-  }
-
-  .products {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .product {
-    padding: 9px;
-  }
-
-  .fruit-art {
-    height: 115px;
-  }
-
-  nav {
-    gap: 6px;
-  }
-
-  .category-btn {
-    padding: 9px 11px;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090909">
+  <title>Alex's Fruit Shop | Blox Fruits</title>
+  <style>
+    :root {
+      --bg: #090909;
+      --panel: #151214;
+      --red: #ff2345;
+      --pink: #ff5268;
+      --text: #fffafa;
+      --muted: #bdb3b5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse at top, #31000b 0%, #090909 65%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    header {
+      padding: 18px 16px;
+      background: #100b0c;
+      border-bottom: 1px solid #812033;
+      box-shadow: 0 4px 24px #ff17381c;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+    .nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand { font-size: 19px; font-weight: 900; }
+    .brand span { color: var(--red); }
+    .cart-button, .primary, .secondary {
+      border: 1px solid #702033;
+      border-radius: 12px;
+      padding: 11px 15px;
+      font-weight: 800;
+    }
+    .cart-button, .primary {
+      background: linear-gradient(135deg, #ff2345, #96001d);
+      color: white;
+      border-color: #ff5268;
+      box-shadow: 0 4px 14px #ff17381c;
+      transition: .2s ease;
+    }
+    .cart-button:hover, .primary:hover {
+      box-shadow: 0 0 18px #ff173855;
+      transform: translateY(-2px);
+    }
+    .secondary {
+      background: #321019;
+      color: white;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+    main { max-width: 1100px; margin: auto; padding: 22px 15px 50px; }
+    .hero {
+      background: linear-gradient(135deg, #45000e, #151515 65%, #280008);
+      padding: 30px 20px;
+      border-radius: 22px;
+      margin-bottom: 22px;
+      border: 1px solid #802033;
+      box-shadow: 0 10px 35px #0008;
+    }
+    .tag {
+      color: #ff7185;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+    h1 {
+      font-size: clamp(30px, 7vw, 48px);
+      margin: 12px 0;
+      text-shadow: 0 0 22px #ff234533;
+    }
+    .hero p { color: #e2d5d8; line-height: 1.6; margin-bottom: 0; }
+    .category-bar {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 0 12px;
+      margin: 8px 0 10px;
+      scrollbar-width: none;
+    }
+    .category-bar::-webkit-scrollbar { display: none; }
+    .category-btn {
+      flex: 0 0 auto;
+      border: 1px solid #51202b;
+      border-radius: 10px;
+      background: linear-gradient(145deg, #1b1517, #100d0e);
+      color: #d9cdd0;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: .2s ease;
+    }
+    .category-btn:hover, .category-btn.active {
+      color: white;
+      border-color: #ff2345;
+      background: linear-gradient(135deg, #ff2345, #790018);
+      box-shadow: 0 0 14px #ff234544;
+    }
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin: 18px 0 16px;
+    }
+    h2 { font-size: 23px; margin: 0; }
+    .muted { color: var(--muted); font-size: 13px; }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .product {
+      background: linear-gradient(145deg, #191719, #101010);
+      border: 1px solid #40202a;
+      border-radius: 17px;
+      padding: 13px;
+      min-width: 0;
+      transition: .25s ease;
+      box-shadow: 0 8px 24px #0005;
+    }
+    .product:hover {
+      border-color: #ff2345;
+      box-shadow: 0 0 18px #ff234533;
+      transform: translateY(-3px);
+    }
+    .fruit-art {
+      height: 175px;
+      border-radius: 13px;
+      background: radial-gradient(circle at 50% 35%, #4b101c, #171010);
+      display: grid;
+      place-items: center;
+      font-size: 55px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .fruit-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+    .product h3 { font-size: 16px; margin: 5px 0; }
+    .price { font-size: 19px; font-weight: 900; color: var(--pink); margin: 10px 0; }
+    .stock { color: var(--muted); font-size: 12px; margin-bottom: 12px; }
+    .product .primary { width: 100%; padding: 10px 5px; font-size: 13px; }
+    button:disabled { opacity: .45; cursor: not-allowed; }
+    .panel {
+      background: #141414;
+      border: 1px solid #40202a;
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 22px;
+      box-shadow: 0 8px 24px #0005;
+    }
+    .cart-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid #392027;
+      padding: 13px 0;
+    }
+    .cart-line:last-child { border-bottom: 0; }
+    .qty { display: flex; align-items: center; gap: 10px; }
+    .qty button {
+      background: #321019;
+      color: white;
+      border: 1px solid #702033;
+      border-radius: 8px;
+      width: 30px;
+      height: 30px;
+    }
+    label {
+      display: block;
+      margin: 16px 0 7px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    input {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #49202a;
+      background: #101010;
+      color: white;
+      padding: 13px;
+      outline-color: var(--red);
+    }
+    input:focus { border-color: var(--red); box-shadow: 0 0 10px #ff234522; }
+    .total {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 20px;
+      font-weight: 900;
+      margin: 18px 0;
+    }
+    .wide { width: 100%; margin-top: 10px; }
+    .notice {
+      background: #211014;
+      border-left: 3px solid var(--red);
+      border-radius: 8px;
+      padding: 12px;
+      color: #e3d7da;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-top: 14px;
+    }
+    #payment { display: none; }
+    #qrImage {
+      display: none;
+      width: 320px;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      background: white;
+      padding: 10px;
+      border-radius: 12px;
+      margin: 15px auto;
+    }
+    .center { text-align: center; }
+    footer { text-align: center; color: var(--muted); padding: 25px 10px; font-size: 12px; }
+    @media (min-width: 650px) {
+      .products { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+      .hero { padding: 42px; }
+      .fruit-art { height: 145px; }
+    }
+  </style>
 </head>
-
 <body>
+  <header>
+    <div class="nav">
+      <div class="brand">🍇 ALEX'S <span>FRUIT SHOP</span></div>
+      <button class="cart-button" onclick="goToCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+    </div>
+  </header>
 
-<header>
-  <h1>🍎 Alex's Fruit Shop</h1>
-  <p>Your Blox Fruits shop — browse, add to cart, and order.</p>
-</header>
+  <main>
+    <section class="hero">
+      <div class="tag">YOUR NEXT ADVENTURE STARTS HERE</div>
+      <h1>Blox Fruits Shop ⚔️</h1>
+      <p>Explore the shop, choose your items, and follow the checkout instructions. Join our Discord for order assistance.</p>
+    </section>
 
-<nav>
-  <button class="category-btn active" data-category="All">All</button>
-  <button class="category-btn" data-category="Fruits">Fruits</button>
-  <button class="category-btn" data-category="Gamepasses">Gamepasses</button>
-  <button class="category-btn" data-category="Perms">Perms</button>
-  <button onclick="document.getElementById('shop-cart').scrollIntoView({behavior:'smooth'})">
-    🛒 Cart (<span id="cart-count">0</span>)
-  </button>
-</nav>
+    <div class="category-bar" id="categoryBar">
+      <button class="category-btn active" onclick="setCategory('All', this)">All</button>
+      <button class="category-btn" onclick="setCategory('Fruits', this)">🍎 Fruits</button>
+      <button class="category-btn" onclick="setCategory('Gamepasses', this)">🎮 Gamepasses</button>
+      <button class="category-btn" onclick="setCategory('Perms', this)">✨ Perms</button>
+    </div>
 
-<main class="container">
+    <div class="section-title">
+      <h2 id="sectionHeading">🔥 All Items</h2>
+      <span class="muted">Prices in INR (₹)</span>
+    </div>
+    <section class="products" id="products"></section>
 
-  <div class="notice">
-    🔥 <strong>Welcome to Alex's Fruit Shop!</strong><br>
-    Choose your products, add them to your cart, and submit your order.
-    Please confirm availability and payment details before paying.
-  </div>
-
-  <h2 class="section-title">🛍️ Shop Products</h2>
-  <div id="products" class="products"></div>
-
-  <div class="layout" id="shop-cart">
-
-    <section class="panel">
+    <section class="panel" id="cart">
       <h2>🛒 Your Cart</h2>
-      <div id="cart-items">
-        <p class="small">Your cart is empty. Add some products first!</p>
-      </div>
-      <div class="total">Total: ₹<span id="cart-total">0</span></div>
-      <button class="full-button" onclick="clearCart()">Clear Cart</button>
-    </section>
-
-    <section class="panel">
-      <h2>📦 Checkout</h2>
-
-      <form id="checkout-form">
-        <label for="customer-name">Your name</label>
-        <input id="customer-name" required maxlength="80" placeholder="Enter your name">
-
-        <label for="roblox-name">Roblox username</label>
-        <input id="roblox-name" required maxlength="50" placeholder="Enter your Roblox username">
-
-        <label for="contact">Discord username or contact</label>
-        <input id="contact" required maxlength="100" placeholder="How can we contact you?">
-
-        <label for="payment-method">Payment method</label>
-        <select id="payment-method" required>
-          <option value="">Choose payment method</option>
-          <option value="UPI">UPI / QR payment</option>
-          <option value="Discord">Discuss payment on Discord</option>
-        </select>
-
-        <label for="notes">Order notes (optional)</label>
-        <textarea id="notes" maxlength="500" placeholder="Anything else we should know?"></textarea>
-
-        <button class="full-button" type="submit">Continue to Payment</button>
+      <div id="cartItems"></div>
+      <div class="total"><span>Total</span><span id="total">₹0</span></div>
+      <form id="checkoutForm">
+        <label for="roblox">Your Roblox username</label>
+        <input id="roblox" name="roblox" placeholder="Enter your Roblox username" required maxlength="50" autocomplete="off">
+        <label for="contact">Discord username (optional)</label>
+        <input id="contact" name="contact" placeholder="Your Discord username" maxlength="80" autocomplete="off">
+        <button class="primary wide" type="submit">Continue to Payment</button>
       </form>
-
-      <div id="checkout-result" class="hidden">
-        <div class="status">
-          <h3>✅ Order Summary</h3>
-          <div id="order-summary"></div>
-          <p class="small">
-            This static website does not automatically send your order to the shop owner.
-            Send the order summary through Discord to arrange fulfillment.
-          </p>
-        </div>
-
-        <div id="payment-section" class="hidden">
-          <h3>💳 UPI / QR Payment</h3>
-          <p>Scan the QR code below if it is available. Confirm the recipient and amount in your payment app before paying.</p>
-          <img id="qr-image" class="qr-image" alt="Shop payment QR code">
-          <p class="small">
-            After payment, share your payment proof through the shop's Discord server.
-            Do not assume an order is confirmed until the shop owner verifies it.
-          </p>
-        </div>
-
-        <button class="full-button" onclick="copyOrder()">Copy Order Summary</button>
-        <a class="button full-button" id="discord-link" href="#" target="_blank" rel="noopener noreferrer">
-          Open Discord
-        </a>
-      </div>
+      <div class="notice">Please check your order and total before paying. Payment is not automatically verified by this website.</div>
     </section>
 
-  </div>
+    <section class="panel" id="payment">
+      <h2>💳 Payment Instructions</h2>
+      <p>Order summary:</p>
+      <div id="orderSummary"></div>
+      <p class="total"><span>Amount to pay</span><span id="payAmount">₹0</span></p>
+      <div class="center">
+        <img id="qrImage" alt="Your UPI payment QR code">
+        <p id="upiText"></p>
+        <a id="upiButton" class="secondary" href="#" style="display:none">Open UPI App</a>
+      </div>
+      <div class="notice">
+        1. Pay the exact amount shown above.<br>
+        2. Save your payment screenshot or receipt.<br>
+        3. Open Discord using the button below.<br>
+        4. Create a ticket and send your Roblox username, order details, and payment proof.<br><br>
+        Wait for a human confirmation. Clicking the Discord button does not confirm payment.
+      </div>
+      <a id="discordButton" class="primary wide" href="#" target="_blank" rel="noopener noreferrer" style="display:block;text-align:center;text-decoration:none">Open Discord &amp; Submit Proof</a>
+      <button class="secondary wide" onclick="backToCart()">Back to Cart</button>
+    </section>
+  </main>
 
-  <section class="panel">
-    <h2>ℹ️ Important Information</h2>
-    <p class="small">
-      This is a fan-made Blox Fruits shop website and is not affiliated with or endorsed by
-      Roblox or the Blox Fruits developers. Product availability, prices, delivery, and
-      payment must be confirmed with the shop owner. Never share your Roblox password
-      or account security codes.
-    </p>
-  </section>
+  <footer>Fan-made shop website. Not affiliated with or endorsed by Roblox or the Blox Fruits creators.</footer>
 
-</main>
+  <script>
+    const SHOP = {
+      name: "Alex's Fruit Shop",
+      upiId: "",
+      qrImageUrl: "https://cdn.discordapp.com/attachments/1511061757982937310/1563973110472908830/IMG_5728.png?ex=6adf92f6&is=6ade4176&hm=3abd05246f07e6cddb897eca4da3ea1213479c7ea6187b880230069ed4612&",
+      discordInvite: "https://discord.gg/alexservices"
+    };
 
-<footer>
-  <strong>Alex's Fruit Shop</strong><br>
-  Blox Fruits fan-made shop website<br>
-  © 2026 Alex's Fruit Shop
-</footer>
+    const products = [
+      { id: 1, name: "Kitsune", price: 350, stock: 10, image: "IMG_6324.jpeg", description: "Kitsune fruit", category: "Fruits" },
+      { id: 2, name: "Buddha", price: 30, stock: 10, image: "buddha.jpeg", description: "Buddha fruit", category: "Fruits" },
+      { id: 3, name: "T-Rex", price: 40, stock: 10, image: "trex.png", description: "T-Rex fruit", category: "Fruits" },
+      { id: 4, name: "Werewolf", price: 550, stock: 10, image: "IMG_6327.jpeg", description: "Werewolf fruit", category: "Fruits" },
+      { id: 5, name: "Venom", price: 40, stock: 10, image: "venom.png", description: "Venom fruit", category: "Fruits" },
+      { id: 6, name: "Portal", price: 30, stock: 10, image: "portal.png", description: "Portal fruit", category: "Fruits" },
+      { id: 7, name: "Mammoth", price: 0, stock: 10, image: "mamooth.jpeg", description: "Mammoth fruit", category: "Fruits" },
+      { id: 8, name: "Tiger", price: 160, stock: 10, image: "tiger.png", description: "Tiger fruit", category: "Fruits" },
+      { id: 9, name: "Crimson Kitsune", price: 5200, stock: 10, image: "IMG_6335.jpeg", description: "Crimson Kitsune", category: "Fruits" },
+      { id: 10, name: "Galaxy Empyrean Kitsune", price: 7000, stock: 10, image: "IMG_6336.jpeg", description: "Galaxy Empyrean Kitsune", category: "Fruits" },
+      { id: 11, name: "Shadow", price: 60, stock: 10, image: "IMG_6337.jpeg", description: "Shadow fruit", category: "Fruits" },
+      { id: 12, name: "Dough", price: 40, stock: 10, image: "dough.png", description: "Dough fruit", category: "Fruits" },
+      { id: 13, name: "Yeti", price: 150, stock: 10, image: "yeti.png", description: "Yeti fruit", category: "Fruits" },
+      { id: 14, name: "Gas", price: 60, stock: 10, image: "gas.png", description: "Gas fruit", category: "Fruits" },
+      { id: 15, name: "Gravity", price: 20, stock: 10, image: "gravity.png", description: "Gravity fruit", category: "Fruits" },
+      { id: 16, name: "Celestial Pain", price: 550, stock: 10, image: "IMG_6342.jpeg", description: "Celestial Pain", category: "Fruits" },
+      { id: 17, name: "Dragon", price: 2400, stock: 10, image: "IMG_6345.jpeg", description: "Dragon fruit", category: "Fruits" },
+      { id: 39, name: "Control", price: 0, stock: 10, image: "control.png", description: "Control fruit", category: "Fruits" },
 
-<script>
-const SHOP = {
-  name: "Alex's Fruit Shop",
-  qrImageUrl: "https://cdn.discordapp.com/attachments/1511061757982937310/1563973110472908830/IMG_5728.png?ex=6adf92f6&is=6ade4176&hm=3abd05246f07e6cddb897eca4da3ea1213479c7ea6187b880180230069ed4612&",
-  discordInvite: "https://discord.gg/alexservices"
-};
+      { id: 18, name: "2x Money", price: 350, stock: 10, image: "IMG_6426.jpeg", description: "Double money gamepass", category: "Gamepasses" },
+      { id: 19, name: "2x Mastery", price: 350, stock: 10, image: "IMG_6425.jpeg", description: "Double mastery gamepass", category: "Gamepasses" },
+      { id: 20, name: "2x Boss Drops", price: 280, stock: 10, image: "IMG_6429.jpeg", description: "Double boss drops", category: "Gamepasses" },
+      { id: 21, name: "Fast Boats", price: 280, stock: 10, image: "🚤", description: "Fast Boats gamepass", category: "Gamepasses" },
+      { id: 22, name: "Fruit Notifier", price: 2000, stock: 10, image: "IMG_6427.jpeg", description: "Fruit Notifier gamepass", category: "Gamepasses" },
+      { id: 23, name: "Dark Blade", price: 800, stock: 10, image: "IMG_6428.jpeg", description: "Dark Blade gamepass", category: "Gamepasses" },
 
-/*
-  IMPORTANT:
-  Keep all image files in the same GitHub folder as index.html.
-  New permanent products with unknown prices use price: 0 as placeholders.
-  Set their correct prices before publishing or accepting orders.
-*/
+      { id: 24, name: "Perm Kitsune", price: 3000, stock: 10, image: "kit.png", description: "Permanent Kitsune", category: "Perms" },
+      { id: 25, name: "Perm Dragon", price: 3800, stock: 10, image: "🐉", description: "Permanent Dragon", category: "Perms" },
+      { id: 26, name: "Perm Control", price: 0, stock: 10, image: "control.png", description: "Permanent Control", category: "Perms" },
+      { id: 27, name: "Perm Dough", price: 1800, stock: 10, image: "dough.png", description: "Permanent Dough", category: "Perms" },
+      { id: 28, name: "Perm Portal", price: 1200, stock: 10, image: "portal.png", description: "Permanent Portal", category: "Perms" },
+      { id: 29, name: "Perm Buddha", price: 1300, stock: 10, image: "buddha.jpeg", description: "Permanent Buddha", category: "Perms" },
+      { id: 30, name: "Perm Magnet", price: 2650, stock: 10, image: "🧲", description: "Permanent Magnet", category: "Perms" },
+      { id: 31, name: "Perm Tiger", price: 2000, stock: 10, image: "tiger.png", description: "Permanent Tiger", category: "Perms" },
+      { id: 32, name: "Perm Yeti", price: 1950, stock: 10, image: "yeti.png", description: "Permanent Yeti", category: "Perms" },
+      { id: 33, name: "Perm T-Rex", price: 1500, stock: 10, image: "trex.png", description: "Permanent T-Rex", category: "Perms" },
+      { id: 34, name: "Perm Shadow", price: 1850, stock: 10, image: "🌑", description: "Permanent Shadow", category: "Perms" },
+      { id: 35, name: "Perm Venom", price: 1900, stock: 10, image: "venom.png", description: "Permanent Venom", category: "Perms" },
+      { id: 36, name: "Perm Gas", price: 1950, stock: 10, image: "gas.png", description: "Permanent Gas", category: "Perms" },
+      { id: 37, name: "Perm Mammoth", price: 0, stock: 10, image: "mamooth.jpeg", description: "Permanent Mammoth", category: "Perms" },
+      { id: 38, name: "Perm Lightning", price: 0, stock: 10, image: "lightning.png", description: "Permanent Lightning", category: "Perms" },
+      { id: 40, name: "Perm Light", price: 0, stock: 10, image: "light.png", description: "Permanent Light", category: "Perms" },
+      { id: 41, name: "Perm Gravity", price: 0, stock: 10, image: "gravity.png", description: "Permanent Gravity", category: "Perms" }
+    ];
 
-const products = [
-  // FRUITS
-  {id:1,name:"Kitsune",price:350,stock:10,image:"IMG_6324.jpeg",description:"Kitsune fruit",category:"Fruits",emoji:"🦊"},
-  {id:2,name:"Buddha",price:30,stock:10,image:"IMG_6325.jpeg",description:"Buddha fruit",category:"Fruits",emoji:"🧘"},
-  {id:3,name:"T-Rex",price:40,stock:10,image:"IMG_6326.jpeg",description:"T-Rex fruit",category:"Fruits",emoji:"🦖"},
-  {id:4,name:"Werewolf",price:550,stock:10,image:"IMG_6327.jpeg",description:"Werewolf fruit",category:"Fruits",emoji:"🐺"},
-  {id:5,name:"Venom",price:40,stock:10,image:"IMG_6331.jpeg",description:"Venom fruit",category:"Fruits",emoji:"☠️"},
-  {id:6,name:"Portal",price:30,stock:10,image:"IMG_6332.jpeg",description:"Portal fruit",category:"Fruits",emoji:"🌀"},
-  {id:7,name:"Mammoth",price:20,stock:10,image:"IMG_6333.jpeg",description:"Mammoth fruit",category:"Fruits",emoji:"🦣"},
-  {id:8,name:"Tiger",price:160,stock:10,image:"IMG_6334.jpeg",description:"Tiger fruit",category:"Fruits",emoji:"🐅"},
-  {id:9,name:"Crimson Kitsune",price:5200,stock:10,image:"IMG_6335.jpeg",description:"Crimson Kitsune",category:"Fruits",emoji:"🦊"},
-  {id:10,name:"Galaxy Empyrean Kitsune",price:7000,stock:10,image:"IMG_6336.jpeg",description:"Galaxy Empyrean Kitsune",category:"Fruits",emoji:"🌌"},
-  {id:11,name:"Shadow",price:60,stock:10,image:"IMG_6337.jpeg",description:"Shadow fruit",category:"Fruits",emoji:"🌑"},
-  {id:12,name:"Dough",price:40,stock:10,image:"IMG_6338.jpeg",description:"Dough fruit",category:"Fruits",emoji:"🍩"},
-  {id:13,name:"Yeti",price:150,stock:10,image:"IMG_6339.jpeg",description:"Yeti fruit",category:"Fruits",emoji:"❄️"},
-  {id:14,name:"Gas",price:60,stock:10,image:"IMG_6340.jpeg",description:"Gas fruit",category:"Fruits",emoji:"💨"},
-  {id:15,name:"Gravity",price:20,stock:10,image:"IMG_6341.jpeg",description:"Gravity fruit",category:"Fruits",emoji:"🌍"},
-  {id:16,name:"Celestial Pain",price:550,stock:10,image:"IMG_6342.jpeg",description:"Celestial Pain",category:"Fruits",emoji:"✨"},
-  {id:17,name:"Dragon",price:2400,stock:10,image:"IMG_6345.jpeg",description:"Dragon fruit",category:"Fruits",emoji:"🐉"},
+    let cart = {};
+    try {
+      const savedCart = JSON.parse(localStorage.getItem("alexFruitCart") || "{}") || {};
+      products.forEach(function(p) {
+        const qty = Number(savedCart[p.id] || 0);
+        if (qty > 0 && qty <= p.stock) cart[p.id] = qty;
+      });
+    } catch (error) {
+      cart = {};
+    }
 
-  // GAMEPASSES
-  {id:18,name:"2x Money",price:350,stock:10,image:"IMG_6426.jpeg",description:"Double money gamepass",category:"Gamepasses",emoji:"💰"},
-  {id:19,name:"2x Mastery",price:350,stock:10,image:"IMG_6425.jpeg",description:"Double mastery gamepass",category:"Gamepasses",emoji:"⚔️"},
-  {id:20,name:"2x Boss Drop",price:280,stock:10,image:"IMG_6429.jpeg",description:"Double boss drops",category:"Gamepasses",emoji:"🎁"},
-  {id:21,name:"Fast Boats",price:280,stock:10,image:"",description:"Fast Boats gamepass",category:"Gamepasses",emoji:"🚤"},
-  {id:22,name:"Fruit Notifier",price:2000,stock:10,image:"IMG_6427.jpeg",description:"Fruit Notifier gamepass",category:"Gamepasses",emoji:"🔔"},
+    let currentOrder = null;
+    let activeCategory = "All";
 
-  // PERMANENT FRUITS
-  {id:23,name:"Perm Kitsune",price:3000,stock:10,image:"kit.png",description:"Permanent Kitsune",category:"Perms",emoji:"🦊"},
-  {id:24,name:"Perm Dragon",price:3800,stock:10,image:"",description:"Permanent Dragon",category:"Perms",emoji:"🐉"},
-  {id:25,name:"Perm Control",price:2900,stock:10,image:"control.png",description:"Permanent Control",category:"Perms",emoji:"🎮"},
-  {id:26,name:"Perm Dough",price:1800,stock:10,image:"dough.png",description:"Permanent Dough",category:"Perms",emoji:"🍩"},
-  {id:27,name:"Perm Portal",price:1200,stock:10,image:"portal.png",description:"Permanent Portal",category:"Perms",emoji:"🌀"},
-  {id:28,name:"Perm Buddha",price:1300,stock:10,image:"buddha.jpeg",description:"Permanent Buddha",category:"Perms",emoji:"🧘"},
-  {id:29,name:"Perm Magnet",price:2300,stock:10,image:"",description:"Permanent Magnet",category:"Perms",emoji:"🧲"},
-  {id:30,name:"Perm Tiger",price:2000,stock:10,image:"tiger.png",description:"Permanent Tiger",category:"Perms",emoji:"🐅"},
-  {id:31,name:"Perm Yeti",price:1950,stock:10,image:"yeti.png",description:"Permanent Yeti",category:"Perms",emoji:"❄️"},
-  {id:32,name:"Dark Blade",price:800,stock:10,image:"IMG_6428.jpeg",description:"Dark Blade",category:"Gamepasses",emoji:"⚔️"},
-  {id:33,name:"Perm T-Rex",price:1500,stock:10,image:"trex.png",description:"Permanent T-Rex",category:"Perms",emoji:"🦖"},
-  {id:34,name:"Perm Shadow",price:1850,stock:10,image:"",description:"Permanent Shadow",category:"Perms",emoji:"🌑"},
-  {id:35,name:"Perm Venom",price:1900,stock:10,image:"venom.png",description:"Permanent Venom",category:"Perms",emoji:"☠️"},
-  {id:36,name:"Perm Gas",price:1950,stock:10,image:"gas.png",description:"Permanent Gas",category:"Perms",emoji:"💨"},
+    function money(amount) {
+      return "₹" + Number(amount).toLocaleString("en-IN");
+    }
 
-  // NEW PERMANENT FRUITS — UPDATE PLACEHOLDER PRICES
-  {id:37,name:"Perm Mammoth",price:0,stock:10,image:"mamooth.jpeg",description:"Permanent Mammoth — set price before selling",category:"Perms",emoji:"🦣"},
-  {id:38,name:"Perm Lightning",price:0,stock:10,image:"lightning.png",description:"Permanent Lightning — set price before selling",category:"Perms",emoji:"⚡"},
-  {id:39,name:"Perm Light",price:0,stock:10,image:"light.png",description:"Permanent Light — set price before selling",category:"Perms",emoji:"💡"},
-  {id:40,name:"Perm Gravity",price:0,stock:10,image:"gravity.png",description:"Permanent Gravity — set price before selling",category:"Perms",emoji:"🌍"}
-];
+    function saveCart() {
+      try { localStorage.setItem("alexFruitCart", JSON.stringify(cart)); } catch (error) {}
+    }
 
-let currentCategory = "All";
-let cart = {};
-let latestOrderText = "";
+    function safeText(value) {
+      return String(value).replace(/[&<>"']/g, function(char) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char];
+      });
+    }
 
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#39;"
-  })[char]);
-}
+    function productArt(product) {
+      if (/^(https:\/\/[^ ]+|.*\.(jpeg|jpg|png|webp))$/i.test(product.image)) {
+        return '<img src="' + safeText(product.image) + '" alt="' + safeText(product.name) + '">';
+      }
+      return '<span aria-hidden="true">' + safeText(product.image) + '</span>';
+    }
 
-function productArt(product) {
-  if (product.image) {
-    return `
-      <div class="fruit-art">
-        <img
-          src="${escapeHTML(product.image)}"
-          alt="${escapeHTML(product.name)}"
-          loading="lazy"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
-        >
-        <span class="fruit-emoji" style="display:none">${product.emoji || "🍎"}</span>
-      </div>`;
-  }
+    function setCategory(category, button) {
+      activeCategory = category;
+      document.querySelectorAll(".category-btn").forEach(function(btn) {
+        btn.classList.toggle("active", btn === button);
+      });
+      const headings = {
+        All: "🔥 All Items",
+        Fruits: "🍎 Fruits",
+        Gamepasses: "🎮 Gamepasses",
+        Perms: "✨ Permanent Fruits"
+      };
+      document.getElementById("sectionHeading").textContent = headings[category] || "All Items";
+      renderProducts();
+    }
 
-  return `
-    <div class="fruit-art">
-      <span class="fruit-emoji">${product.emoji || "🍎"}</span>
-    </div>`;
-}
+    function renderProducts() {
+      const visibleProducts = activeCategory === "All"
+        ? products
+        : products.filter(function(p) { return p.category === activeCategory; });
 
-function renderProducts() {
-  const list = products.filter(product =>
-    currentCategory === "All" || product.category === currentCategory
-  );
+      document.getElementById("products").innerHTML = visibleProducts.map(function(p) {
+        const inCart = Number(cart[p.id] || 0);
+        const remaining = Math.max(0, p.stock - inCart);
+        return `
+          <article class="product">
+            <div class="fruit-art">${productArt(p)}</div>
+            <h3>${safeText(p.name)}</h3>
+            <div class="muted">${safeText(p.description)}</div>
+            <div class="price">${money(p.price)}</div>
+            <div class="stock">${remaining} available</div>
+            <button class="primary" ${remaining <= 0 ? "disabled" : ""} onclick="addToCart(${p.id})">
+              ${remaining <= 0 ? "Out of listed stock" : "Add to Cart"}
+            </button>
+          </article>`;
+      }).join("");
+    }
 
-  document.getElementById("products").innerHTML = list.map(product => `
-    <article class="product">
-      ${productArt(product)}
-      <h3>${escapeHTML(product.name)}</h3>
-      <p>${escapeHTML(product.description)}</p>
-      <div class="price">₹${product.price.toLocaleString("en-IN")}</div>
-      <div class="stock">Available: ${product.stock}</div>
-      <button onclick="addToCart(${product.id})">Add to Cart</button>
-    </article>
-  `).join("");
-}
+    function addToCart(id) {
+      const product = products.find(function(p) { return p.id === id; });
+      if (!product) return;
+      const qty = Number(cart[id] || 0);
+      if (qty >= product.stock) {
+        alert("You have reached the listed stock limit.");
+        return;
+      }
+      cart[id] = qty + 1;
+      saveCart();
+      renderAll();
+    }
 
-document.querySelectorAll(".category-btn").forEach(button => {
-  button.addEventListener("click", () => {
-    currentCategory = button.dataset.category;
+    function changeQty(id, amount) {
+      const product = products.find(function(p) { return p.id === id; });
+      if (!product) return;
+      const next = Number(cart[id] || 0) + amount;
+      if (next <= 0) delete cart[id];
+      else if (next <= product.stock) cart[id] = next;
+      else alert("Not enough listed stock.");
+      saveCart();
+      renderAll();
+    }
 
-    document.querySelectorAll(".category-btn").forEach(item =>
-      item.classList.toggle("active", item === button)
-    );
+    function getItems() {
+      return products.filter(function(p) { return Number(cart[p.id] || 0) > 0; });
+    }
 
-    renderProducts();
-  });
-});
+    function getTotal() {
+      return getItems().reduce(function(sum, p) {
+        return sum + p.price * Number(cart[p.id] || 0);
+      }, 0);
+    }
 
-function addToCart(id) {
-  const product = products.find(item => item.id === id);
-  if (!product) return;
+    function renderCart() {
+      const items = getItems();
+      const count = items.reduce(function(sum, p) { return sum + Number(cart[p.id] || 0); }, 0);
+      document.getElementById("cartCount").textContent = count;
+      document.getElementById("total").textContent = money(getTotal());
+      document.getElementById("cartItems").innerHTML = items.length
+        ? items.map(function(p) {
+            return `<div class="cart-line">
+              <div><strong>${safeText(p.name)}</strong><br><span class="muted">${money(p.price)} each</span></div>
+              <div class="qty">
+                <button type="button" aria-label="Remove one" onclick="changeQty(${p.id}, -1)">−</button>
+                <span>${Number(cart[p.id])}</span>
+                <button type="button" aria-label="Add one" onclick="changeQty(${p.id}, 1)">+</button>
+              </div>
+            </div>`;
+          }).join("")
+        : '<p class="muted">Your cart is empty. Add an item to begin.</p>';
+      renderProducts();
+    }
 
-  if (product.price === 0) {
-    alert("This product still has a placeholder price. Please set its correct price before selling.");
-    return;
-  }
+    function renderAll() { renderCart(); }
 
-  if ((cart[id] || 0) >= product.stock) {
-    alert("Sorry, the available stock limit has been reached.");
-    return;
-  }
+    function goToCart() {
+      document.getElementById("cart").scrollIntoView({ behavior: "smooth" });
+    }
 
-  cart[id] = (cart[id] || 0) + 1;
-  renderCart();
+    function backToCart() {
+      document.getElementById("payment").style.display = "none";
+      document.getElementById("cart").style.display = "block";
+      goToCart();
+    }
 
-  document.getElementById("shop-cart").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-}
+    function setupPayment(order) {
+      document.getElementById("cart").style.display = "none";
+      document.getElementById("payment").style.display = "block";
+      document.getElementById("payAmount").textContent = money(order.total);
+      document.getElementById("orderSummary").innerHTML = order.items.map(function(item) {
+        return "<p>" + safeText(item.name) + " × " + item.qty + " — " + money(item.price * item.qty) + "</p>";
+      }).join("") + "<p><strong>Roblox username:</strong> " + safeText(order.roblox) + "</p>";
 
-function changeQuantity(id, change) {
-  const product = products.find(item => item.id === id);
-  if (!product) return;
+      const qr = document.getElementById("qrImage");
+      if (SHOP.qrImageUrl.startsWith("https://")) {
+        qr.src = SHOP.qrImageUrl;
+        qr.style.display = "block";
+      } else {
+        qr.removeAttribute("src");
+        qr.style.display = "none";
+      }
 
-  const nextQuantity = (cart[id] || 0) + change;
+      document.getElementById("upiText").textContent = SHOP.upiId
+        ? "UPI ID: " + SHOP.upiId
+        : "The shop owner still needs to configure a UPI ID or QR code.";
 
-  if (nextQuantity <= 0) {
-    delete cart[id];
-  } else if (nextQuantity <= product.stock) {
-    cart[id] = nextQuantity;
-  } else {
-    alert("That quantity exceeds the available stock.");
-  }
+      const upiButton = document.getElementById("upiButton");
+      if (SHOP.upiId && /^[\w.-]+@[\w.-]+$/.test(SHOP.upiId)) {
+        const params = new URLSearchParams({
+          pa: SHOP.upiId, pn: SHOP.name, am: order.total.toFixed(2),
+          cu: "INR", tn: "Blox Fruits shop order"
+        });
+        upiButton.href = "upi://pay?" + params.toString();
+        upiButton.style.display = "inline-block";
+      } else {
+        upiButton.style.display = "none";
+      }
 
-  renderCart();
-}
+      const discordButton = document.getElementById("discordButton");
+      if (/^https:\/\/(discord\.gg|discord\.com\/invite)\//i.test(SHOP.discordInvite)) {
+        discordButton.href = SHOP.discordInvite;
+        discordButton.onclick = null;
+      } else {
+        discordButton.href = "#";
+        discordButton.onclick = function(event) {
+          event.preventDefault();
+          alert("The shop owner needs to add the Discord invite link in the SHOP settings in the code.");
+        };
+      }
+      document.getElementById("payment").scrollIntoView({ behavior: "smooth" });
+    }
 
-function clearCart() {
-  cart = {};
-  renderCart();
-}
+    document.getElementById("checkoutForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const items = getItems();
+      if (!items.length) {
+        alert("Your cart is empty. Please add an item first.");
+        return;
+      }
+      const roblox = document.getElementById("roblox").value.trim();
+      const contact = document.getElementById("contact").value.trim();
+      if (!roblox) {
+        alert("Please enter your Roblox username.");
+        return;
+      }
+      currentOrder = {
+        roblox: roblox,
+        contact: contact,
+        total: getTotal(),
+        items: items.map(function(p) {
+          return { id: p.id, name: p.name, price: p.price, qty: Number(cart[p.id]) };
+        })
+      };
+      setupPayment(currentOrder);
+    });
 
-function getCartTotal() {
-  return Object.entries(cart).reduce((total, [id, quantity]) => {
-    const product = products.find(item => item.id === Number(id));
-    return total + (product ? product.price * quantity : 0);
-  }, 0);
-}
-
-function renderCart() {
-  const entries = Object.entries(cart).filter(([, quantity]) => quantity > 0);
-  const cartItems = document.getElementById("cart-items");
-
-  document.getElementById("cart-count").textContent =
-    entries.reduce((sum, [, quantity]) => sum + quantity, 0);
-
-  document.getElementById("cart-total").textContent =
-    getCartTotal().toLocaleString("en-IN");
-
-  if (!entries.length) {
-    cartItems.innerHTML =
-      '<p class="small">Your cart is empty. Add some products first!</p>';
-    return;
-  }
-
-  cartItems.innerHTML = entries.map(([id, quantity]) => {
-    const product = products.find(item => item.id === Number(id));
-    if (!product) return "";
-
-    return `
-      <div class="cart-row">
-        <div>
-          <strong>${escapeHTML(product.name)}</strong><br>
-          <small>₹${product.price.toLocaleString("en-IN")} each</small>
-        </div>
-        <div class="quantity-controls">
-          <button onclick="changeQuantity(${product.id},-1)">−</button>
-          <span>${quantity}</span>
-          <button onclick="changeQuantity(${product.id},1)">+</button>
-        </div>
-      </div>`;
-  }).join("");
-}
-
-document.getElementById("checkout-form").addEventListener("submit", event => {
-  event.preventDefault();
-
-  const entries = Object.entries(cart).filter(([, quantity]) => quantity > 0);
-
-  if (!entries.length) {
-    alert("Your cart is empty. Add products before checkout.");
-    return;
-  }
-
-  const customerName = document.getElementById("customer-name").value.trim();
-  const robloxName = document.getElementById("roblox-name").value.trim();
-  const contact = document.getElementById("contact").value.trim();
-  const paymentMethod = document.getElementById("payment-method").value;
-  const notes = document.getElementById("notes").value.trim();
-
-  const itemLines = entries.map(([id, quantity]) => {
-    const product = products.find(item => item.id === Number(id));
-    return product
-      ? `- ${product.name} x${quantity} = ₹${(product.price * quantity).toLocaleString("en-IN")}`
-      : "";
-  }).filter(Boolean);
-
-  latestOrderText = [
-    "ALEX'S FRUIT SHOP — ORDER REQUEST",
-    "",
-    `Customer: ${customerName}`,
-    `Roblox username: ${robloxName}`,
-    `Contact: ${contact}`,
-    `Payment method: ${paymentMethod}`,
-    "",
-    "Items:",
-    ...itemLines,
-    "",
-    `TOTAL: ₹${getCartTotal().toLocaleString("en-IN")}`,
-    `Notes: ${notes || "None"}`,
-    "",
-    "Please confirm availability and payment instructions."
-  ].join("\n");
-
-  document.getElementById("order-summary").innerHTML = `
-    <p><strong>Customer:</strong> ${escapeHTML(customerName)}</p>
-    <p><strong>Roblox username:</strong> ${escapeHTML(robloxName)}</p>
-    <p><strong>Contact:</strong> ${escapeHTML(contact)}</p>
-    <p><strong>Payment:</strong> ${escapeHTML(paymentMethod)}</p>
-    <p><strong>Items:</strong></p>
-    <ul>${itemLines.map(line => `<li>${escapeHTML(line)}</li>`).join("")}</ul>
-    <p><strong>Total: ₹${getCartTotal().toLocaleString("en-IN")}</strong></p>
-    <p><strong>Notes:</strong> ${escapeHTML(notes || "None")}</p>
-  `;
-
-  document.getElementById("checkout-result").classList.remove("hidden");
-
-  const paymentSection = document.getElementById("payment-section");
-  if (paymentMethod === "UPI") {
-    document.getElementById("qr-image").src = SHOP.qrImageUrl;
-    paymentSection.classList.remove("hidden");
-  } else {
-    paymentSection.classList.add("hidden");
-  }
-
-  document.getElementById("discord-link").href = SHOP.discordInvite;
-
-  document.getElementById("checkout-result").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-});
-
-async function copyOrder() {
-  if (!latestOrderText) return;
-
-  try {
-    await navigator.clipboard.writeText(latestOrderText);
-    alert("Order summary copied! Paste it into Discord.");
-  } catch (error) {
-    window.prompt("Copy your order summary below:", latestOrderText);
-  }
-}
-
-renderProducts();
-renderCart();
-</script>
-
+    renderAll();
+  </script>
 </body>
 </html>
