@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,20 +10,25 @@
     :root {
       --bg: #090909;
       --panel: #151214;
-      --red: #ff2345;
+      --purple: #ff2345;
       --pink: #ff5268;
       --text: #fffafa;
       --muted: #bdb3b5;
+      --green: #ff5268;
     }
+
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       background: radial-gradient(ellipse at top, #31000b 0%, #090909 65%);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
+
     button, input { font: inherit; }
     button { cursor: pointer; }
+
     header {
       padding: 18px 16px;
       background: #100b0c;
@@ -32,6 +38,7 @@
       top: 0;
       z-index: 5;
     }
+
     .nav {
       max-width: 1100px;
       margin: auto;
@@ -40,14 +47,17 @@
       justify-content: space-between;
       gap: 12px;
     }
+
     .brand { font-size: 19px; font-weight: 900; }
-    .brand span { color: var(--red); }
+    .brand span { color: var(--purple); }
+
     .cart-button, .primary, .secondary {
       border: 1px solid #702033;
       border-radius: 12px;
       padding: 11px 15px;
       font-weight: 800;
     }
+
     .cart-button, .primary {
       background: linear-gradient(135deg, #ff2345, #96001d);
       color: white;
@@ -55,10 +65,12 @@
       box-shadow: 0 4px 14px #ff17381c;
       transition: .2s ease;
     }
+
     .cart-button:hover, .primary:hover {
       box-shadow: 0 0 18px #ff173855;
       transform: translateY(-2px);
     }
+
     .secondary {
       background: #321019;
       color: white;
@@ -66,68 +78,50 @@
       display: inline-block;
       text-align: center;
     }
+
     main { max-width: 1100px; margin: auto; padding: 22px 15px 50px; }
+
     .hero {
       background: linear-gradient(135deg, #45000e, #151515 65%, #280008);
       padding: 30px 20px;
       border-radius: 22px;
-      margin-bottom: 22px;
+      margin-bottom: 28px;
       border: 1px solid #802033;
       box-shadow: 0 10px 35px #0008;
     }
+
     .tag {
       color: #ff7185;
       font-size: 12px;
       font-weight: 900;
       letter-spacing: 2px;
     }
+
     h1 {
       font-size: clamp(30px, 7vw, 48px);
       margin: 12px 0;
       text-shadow: 0 0 22px #ff234533;
     }
+
     .hero p { color: #e2d5d8; line-height: 1.6; margin-bottom: 0; }
-    .category-bar {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 4px 0 12px;
-      margin: 8px 0 10px;
-      scrollbar-width: none;
-    }
-    .category-bar::-webkit-scrollbar { display: none; }
-    .category-btn {
-      flex: 0 0 auto;
-      border: 1px solid #51202b;
-      border-radius: 10px;
-      background: linear-gradient(145deg, #1b1517, #100d0e);
-      color: #d9cdd0;
-      padding: 10px 14px;
-      font-size: 12px;
-      font-weight: 800;
-      white-space: nowrap;
-      transition: .2s ease;
-    }
-    .category-btn:hover, .category-btn.active {
-      color: white;
-      border-color: #ff2345;
-      background: linear-gradient(135deg, #ff2345, #790018);
-      box-shadow: 0 0 14px #ff234544;
-    }
+
     .section-title {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 12px;
-      margin: 18px 0 16px;
+      margin: 24px 0 16px;
     }
+
     h2 { font-size: 23px; margin: 0; }
     .muted { color: var(--muted); font-size: 13px; }
+
     .products {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
+
     .product {
       background: linear-gradient(145deg, #191719, #101010);
       border: 1px solid #40202a;
@@ -137,32 +131,38 @@
       transition: .25s ease;
       box-shadow: 0 8px 24px #0005;
     }
+
     .product:hover {
       border-color: #ff2345;
       box-shadow: 0 0 18px #ff234533;
       transform: translateY(-3px);
     }
-    .fruit-art {
-      height: 175px;
-      border-radius: 13px;
-      background: radial-gradient(circle at 50% 35%, #4b101c, #171010);
-      display: grid;
-      place-items: center;
-      font-size: 55px;
-      margin-bottom: 12px;
-      overflow: hidden;
-    }
-    .fruit-art img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
+
+.fruit-art {
+  height: 175px;
+  border-radius: 13px;
+  background: radial-gradient(circle at 50% 35%, #4b101c, #171010);
+  display: grid;
+  place-items: center;
+  font-size: 55px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.fruit-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+  
+
     .product h3 { font-size: 16px; margin: 5px 0; }
-    .price { font-size: 19px; font-weight: 900; color: var(--pink); margin: 10px 0; }
+    .price { font-size: 19px; font-weight: 900; color: var(--green); margin: 10px 0; }
     .stock { color: var(--muted); font-size: 12px; margin-bottom: 12px; }
     .product .primary { width: 100%; padding: 10px 5px; font-size: 13px; }
     button:disabled { opacity: .45; cursor: not-allowed; }
+
     .panel {
       background: #141414;
       border: 1px solid #40202a;
@@ -171,6 +171,7 @@
       margin-top: 22px;
       box-shadow: 0 8px 24px #0005;
     }
+
     .cart-line {
       display: flex;
       justify-content: space-between;
@@ -179,8 +180,10 @@
       border-bottom: 1px solid #392027;
       padding: 13px 0;
     }
+
     .cart-line:last-child { border-bottom: 0; }
     .qty { display: flex; align-items: center; gap: 10px; }
+
     .qty button {
       background: #321019;
       color: white;
@@ -189,12 +192,14 @@
       width: 30px;
       height: 30px;
     }
+
     label {
       display: block;
       margin: 16px 0 7px;
       font-weight: 700;
       font-size: 14px;
     }
+
     input {
       width: 100%;
       border-radius: 10px;
@@ -202,21 +207,27 @@
       background: #101010;
       color: white;
       padding: 13px;
-      outline-color: var(--red);
+      outline-color: var(--purple);
     }
-    input:focus { border-color: var(--red); box-shadow: 0 0 10px #ff234522; }
+
+    input:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 10px #ff234522;
+    }
+
     .total {
       display: flex;
       justify-content: space-between;
-      gap: 12px;
       font-size: 20px;
       font-weight: 900;
       margin: 18px 0;
     }
+
     .wide { width: 100%; margin-top: 10px; }
+
     .notice {
       background: #211014;
-      border-left: 3px solid var(--red);
+      border-left: 3px solid var(--purple);
       border-radius: 8px;
       padding: 12px;
       color: #e3d7da;
@@ -224,20 +235,24 @@
       line-height: 1.6;
       margin-top: 14px;
     }
+
     #payment { display: none; }
-    #qrImage {
-      display: none;
-      width: 320px;
-      max-width: 100%;
-      height: auto;
-      object-fit: contain;
-      background: white;
-      padding: 10px;
-      border-radius: 12px;
-      margin: 15px auto;
-    }
+
+#qrImage {
+  display: none;
+  width: 320px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: white;
+  padding: 10px;
+  border-radius: 12px;
+  margin: 15px auto;
+}
+
     .center { text-align: center; }
     footer { text-align: center; color: var(--muted); padding: 25px 10px; font-size: 12px; }
+
     @media (min-width: 650px) {
       .products { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
       .hero { padding: 42px; }
@@ -249,7 +264,9 @@
   <header>
     <div class="nav">
       <div class="brand">🍇 ALEX'S <span>FRUIT SHOP</span></div>
-      <button class="cart-button" onclick="goToCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+      <button class="cart-button" onclick="goToCart()">
+        🛒 Cart (<span id="cartCount">0</span>)
+      </button>
     </div>
   </header>
 
@@ -260,31 +277,36 @@
       <p>Explore the shop, choose your items, and follow the checkout instructions. Join our Discord for order assistance.</p>
     </section>
 
-    <div class="category-bar" id="categoryBar">
-      <button class="category-btn active" onclick="setCategory('All', this)">All</button>
-      <button class="category-btn" onclick="setCategory('Fruits', this)">🍎 Fruits</button>
-      <button class="category-btn" onclick="setCategory('Gamepasses', this)">🎮 Gamepasses</button>
-      <button class="category-btn" onclick="setCategory('Perms', this)">✨ Perms</button>
-    </div>
-
     <div class="section-title">
-      <h2 id="sectionHeading">🔥 All Items</h2>
+      <h2>🔥 Featured Items</h2>
       <span class="muted">Prices in INR (₹)</span>
     </div>
+
     <section class="products" id="products"></section>
 
     <section class="panel" id="cart">
       <h2>🛒 Your Cart</h2>
       <div id="cartItems"></div>
-      <div class="total"><span>Total</span><span id="total">₹0</span></div>
+      <div class="total">
+        <span>Total</span>
+        <span id="total">₹0</span>
+      </div>
+
       <form id="checkoutForm">
         <label for="roblox">Your Roblox username</label>
-        <input id="roblox" name="roblox" placeholder="Enter your Roblox username" required maxlength="50" autocomplete="off">
+        <input id="roblox" name="roblox" placeholder="Enter your Roblox username"
+               required maxlength="50" autocomplete="off">
+
         <label for="contact">Discord username (optional)</label>
-        <input id="contact" name="contact" placeholder="Your Discord username" maxlength="80" autocomplete="off">
+        <input id="contact" name="contact" placeholder="Your Discord username"
+               maxlength="80" autocomplete="off">
+
         <button class="primary wide" type="submit">Continue to Payment</button>
       </form>
-      <div class="notice">Please check your order and total before paying. Payment is not automatically verified by this website.</div>
+
+      <div class="notice">
+        Please check your order and total before paying. Payment is not automatically verified by this website.
+      </div>
     </section>
 
     <section class="panel" id="payment">
@@ -292,11 +314,13 @@
       <p>Order summary:</p>
       <div id="orderSummary"></div>
       <p class="total"><span>Amount to pay</span><span id="payAmount">₹0</span></p>
+
       <div class="center">
         <img id="qrImage" alt="Your UPI payment QR code">
         <p id="upiText"></p>
         <a id="upiButton" class="secondary" href="#" style="display:none">Open UPI App</a>
       </div>
+
       <div class="notice">
         1. Pay the exact amount shown above.<br>
         2. Save your payment screenshot or receipt.<br>
@@ -304,147 +328,116 @@
         4. Create a ticket and send your Roblox username, order details, and payment proof.<br><br>
         Wait for a human confirmation. Clicking the Discord button does not confirm payment.
       </div>
-      <a id="discordButton" class="primary wide" href="#" target="_blank" rel="noopener noreferrer" style="display:block;text-align:center;text-decoration:none">Open Discord &amp; Submit Proof</a>
+
+      <a id="discordButton" class="primary wide" href="#" target="_blank"
+         rel="noopener noreferrer" style="display:block;text-align:center;text-decoration:none">
+        Open Discord &amp; Submit Proof
+      </a>
       <button class="secondary wide" onclick="backToCart()">Back to Cart</button>
     </section>
   </main>
 
-  <footer>Fan-made shop website. Not affiliated with or endorsed by Roblox or the Blox Fruits creators.</footer>
+  <footer>
+    Fan-made shop website. Not affiliated with or endorsed by Roblox or the Blox Fruits creators.
+  </footer>
 
   <script>
-    const SHOP = {
-      name: "Alex's Fruit Shop",
-      upiId: "",
-      qrImageUrl: "https://cdn.discordapp.com/attachments/1511061757982937310/1563973110472908830/IMG_5728.png?ex=6adf92f6&is=6ade4176&hm=3abd05246f07e6cddb897eca4da3ea1213479c7ea6187b880230069ed4612&",
-      discordInvite: "https://discord.gg/alexservices"
-    };
+    
+const SHOP = {
+  name: "Alex's Fruit Shop",
+  upiId: "",
+  qrImageUrl: "https://cdn.discordapp.com/attachments/1511061757982937310/1563973110472908830/IMG_5728.png?ex=6adf92f6&is=6ade4176&hm=3abd05246f07e6cddb897eca4da3ea1213479c7ea6187b880180230069ed4612&",
+  discordInvite: "https://discord.gg/alexservices"
+};
 
     const products = [
-      { id: 1, name: "Kitsune", price: 350, stock: 10, image: "IMG_6324.jpeg", description: "Kitsune fruit", category: "Fruits" },
-      { id: 2, name: "Buddha", price: 30, stock: 10, image: "buddha.jpeg", description: "Buddha fruit", category: "Fruits" },
-      { id: 3, name: "T-Rex", price: 40, stock: 10, image: "trex.png", description: "T-Rex fruit", category: "Fruits" },
-      { id: 4, name: "Werewolf", price: 550, stock: 10, image: "IMG_6327.jpeg", description: "Werewolf fruit", category: "Fruits" },
-      { id: 5, name: "Venom", price: 40, stock: 10, image: "venom.png", description: "Venom fruit", category: "Fruits" },
-      { id: 6, name: "Portal", price: 30, stock: 10, image: "portal.png", description: "Portal fruit", category: "Fruits" },
-      { id: 7, name: "Mammoth", price: 0, stock: 10, image: "mamooth.jpeg", description: "Mammoth fruit", category: "Fruits" },
-      { id: 8, name: "Tiger", price: 160, stock: 10, image: "tiger.png", description: "Tiger fruit", category: "Fruits" },
-      { id: 9, name: "Crimson Kitsune", price: 5200, stock: 10, image: "IMG_6335.jpeg", description: "Crimson Kitsune", category: "Fruits" },
-      { id: 10, name: "Galaxy Empyrean Kitsune", price: 7000, stock: 10, image: "IMG_6336.jpeg", description: "Galaxy Empyrean Kitsune", category: "Fruits" },
-      { id: 11, name: "Shadow", price: 60, stock: 10, image: "IMG_6337.jpeg", description: "Shadow fruit", category: "Fruits" },
-      { id: 12, name: "Dough", price: 40, stock: 10, image: "dough.png", description: "Dough fruit", category: "Fruits" },
-      { id: 13, name: "Yeti", price: 150, stock: 10, image: "yeti.png", description: "Yeti fruit", category: "Fruits" },
-      { id: 14, name: "Gas", price: 60, stock: 10, image: "gas.png", description: "Gas fruit", category: "Fruits" },
-      { id: 15, name: "Gravity", price: 20, stock: 10, image: "gravity.png", description: "Gravity fruit", category: "Fruits" },
-      { id: 16, name: "Celestial Pain", price: 550, stock: 10, image: "IMG_6342.jpeg", description: "Celestial Pain", category: "Fruits" },
-      { id: 17, name: "Dragon", price: 2400, stock: 10, image: "IMG_6345.jpeg", description: "Dragon fruit", category: "Fruits" },
-      { id: 39, name: "Control", price: 0, stock: 10, image: "control.png", description: "Control fruit", category: "Fruits" },
-
-      { id: 18, name: "2x Money", price: 350, stock: 10, image: "IMG_6426.jpeg", description: "Double money gamepass", category: "Gamepasses" },
-      { id: 19, name: "2x Mastery", price: 350, stock: 10, image: "IMG_6425.jpeg", description: "Double mastery gamepass", category: "Gamepasses" },
-      { id: 20, name: "2x Boss Drops", price: 280, stock: 10, image: "IMG_6429.jpeg", description: "Double boss drops", category: "Gamepasses" },
-      { id: 21, name: "Fast Boats", price: 280, stock: 10, image: "🚤", description: "Fast Boats gamepass", category: "Gamepasses" },
-      { id: 22, name: "Fruit Notifier", price: 2000, stock: 10, image: "IMG_6427.jpeg", description: "Fruit Notifier gamepass", category: "Gamepasses" },
-      { id: 23, name: "Dark Blade", price: 800, stock: 10, image: "IMG_6428.jpeg", description: "Dark Blade gamepass", category: "Gamepasses" },
-
-      { id: 24, name: "Perm Kitsune", price: 3000, stock: 10, image: "kit.png", description: "Permanent Kitsune", category: "Perms" },
-      { id: 25, name: "Perm Dragon", price: 3800, stock: 10, image: "🐉", description: "Permanent Dragon", category: "Perms" },
-      { id: 26, name: "Perm Control", price: 0, stock: 10, image: "control.png", description: "Permanent Control", category: "Perms" },
-      { id: 27, name: "Perm Dough", price: 1800, stock: 10, image: "dough.png", description: "Permanent Dough", category: "Perms" },
-      { id: 28, name: "Perm Portal", price: 1200, stock: 10, image: "portal.png", description: "Permanent Portal", category: "Perms" },
-      { id: 29, name: "Perm Buddha", price: 1300, stock: 10, image: "buddha.jpeg", description: "Permanent Buddha", category: "Perms" },
-      { id: 30, name: "Perm Magnet", price: 2650, stock: 10, image: "🧲", description: "Permanent Magnet", category: "Perms" },
-      { id: 31, name: "Perm Tiger", price: 2000, stock: 10, image: "tiger.png", description: "Permanent Tiger", category: "Perms" },
-      { id: 32, name: "Perm Yeti", price: 1950, stock: 10, image: "yeti.png", description: "Permanent Yeti", category: "Perms" },
-      { id: 33, name: "Perm T-Rex", price: 1500, stock: 10, image: "trex.png", description: "Permanent T-Rex", category: "Perms" },
-      { id: 34, name: "Perm Shadow", price: 1850, stock: 10, image: "🌑", description: "Permanent Shadow", category: "Perms" },
-      { id: 35, name: "Perm Venom", price: 1900, stock: 10, image: "venom.png", description: "Permanent Venom", category: "Perms" },
-      { id: 36, name: "Perm Gas", price: 1950, stock: 10, image: "gas.png", description: "Permanent Gas", category: "Perms" },
-      { id: 37, name: "Perm Mammoth", price: 0, stock: 10, image: "mamooth.jpeg", description: "Permanent Mammoth", category: "Perms" },
-      { id: 38, name: "Perm Lightning", price: 0, stock: 10, image: "lightning.png", description: "Permanent Lightning", category: "Perms" },
-      { id: 40, name: "Perm Light", price: 0, stock: 10, image: "light.png", description: "Permanent Light", category: "Perms" },
-      { id: 41, name: "Perm Gravity", price: 0, stock: 10, image: "gravity.png", description: "Permanent Gravity", category: "Perms" }
-    ];
+  { id: 1, name: "Kitsune", price: 350, stock: 10, image: "IMG_6324.jpeg", description: "Kitsune fruit" },
+  { id: 2, name: "Buddha", price: 30, stock: 10, image: "IMG_6325.jpeg", description: "Buddha fruit" },
+  { id: 3, name: "T-Rex", price: 40, stock: 10, image: "IMG_6326.jpeg", description: "T-Rex fruit" },
+  { id: 4, name: "Werewolf", price: 550, stock: 10, image: "IMG_6327.jpeg", description: "Werewolf fruit" },
+  { id: 5, name: "Venom", price: 40, stock: 10, image: "IMG_6331.jpeg", description: "Venom fruit" },
+  { id: 6, name: "Portal", price: 30, stock: 10, image: "IMG_6332.jpeg", description: "Portal fruit" },
+  { id: 7, name: "Mammoth", price: 20, stock: 10, image: "IMG_6333.jpeg", description: "Mammoth fruit" },
+  { id: 8, name: "Tiger", price: 160, stock: 10, image: "IMG_6334.jpeg", description: "Tiger fruit" },
+  { id: 9, name: "Crimson Kitsune", price: 5200, stock: 10, image: "IMG_6335.jpeg", description: "Crimson Kitsune" },
+  { id: 10, name: "Galaxy Empyrean Kitsune", price: 7000, stock: 10, image: "IMG_6336.jpeg", description: "Galaxy Empyrean Kitsune" },
+  { id: 11, name: "Shadow", price: 60, stock: 10, image: "IMG_6337.jpeg", description: "Shadow fruit" },
+  { id: 12, name: "Dough", price: 40, stock: 10, image: "IMG_6338.jpeg", description: "Dough fruit" },
+  { id: 13, name: "Yeti", price: 150, stock: 10, image: "IMG_6339.jpeg", description: "Yeti fruit" },
+  { id: 14, name: "Gas", price: 60, stock: 10, image: "IMG_6340.jpeg", description: "Gas fruit" },
+  { id: 15, name: "Gravity", price: 20, stock: 10, image: "IMG_6341.jpeg", description: "Gravity fruit" },
+  { id: 16, name: "Celestial Pain", price: 550, stock: 10, image: "IMG_6342.jpeg", description: "Celestial Pain" },
+  { id: 17, name: "Dragon", price: 2400, stock: 10, image: "IMG_6345.jpeg", description: "Dragon fruit" }
+];
 
     let cart = {};
     try {
-      const savedCart = JSON.parse(localStorage.getItem("alexFruitCart") || "{}") || {};
-      products.forEach(function(p) {
-        const qty = Number(savedCart[p.id] || 0);
-        if (qty > 0 && qty <= p.stock) cart[p.id] = qty;
-      });
+      cart = JSON.parse(localStorage.getItem("alexFruitCart") || "{}") || {};
     } catch (error) {
       cart = {};
     }
 
     let currentOrder = null;
-    let activeCategory = "All";
 
     function money(amount) {
       return "₹" + Number(amount).toLocaleString("en-IN");
     }
 
     function saveCart() {
-      try { localStorage.setItem("alexFruitCart", JSON.stringify(cart)); } catch (error) {}
+      try {
+        localStorage.setItem("alexFruitCart", JSON.stringify(cart));
+      } catch (error) {}
     }
 
     function safeText(value) {
       return String(value).replace(/[&<>"']/g, function(char) {
-        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char];
+        return {
+          "&": "&amp;", "<": "&lt;", ">": "&gt;",
+          '"': "&quot;", "'": "&#39;"
+        }[char];
       });
     }
 
     function productArt(product) {
       if (/^(https:\/\/[^ ]+|.*\.(jpeg|jpg|png|webp))$/i.test(product.image)) {
-        return '<img src="' + safeText(product.image) + '" alt="' + safeText(product.name) + '">';
+        return '<img src="' + safeText(product.image) +
+          '" alt="' + safeText(product.name) +
+          '" style="width:100%;height:100%;object-fit:contain">';
       }
-      return '<span aria-hidden="true">' + safeText(product.image) + '</span>';
-    }
-
-    function setCategory(category, button) {
-      activeCategory = category;
-      document.querySelectorAll(".category-btn").forEach(function(btn) {
-        btn.classList.toggle("active", btn === button);
-      });
-      const headings = {
-        All: "🔥 All Items",
-        Fruits: "🍎 Fruits",
-        Gamepasses: "🎮 Gamepasses",
-        Perms: "✨ Permanent Fruits"
-      };
-      document.getElementById("sectionHeading").textContent = headings[category] || "All Items";
-      renderProducts();
+      return safeText(product.image);
     }
 
     function renderProducts() {
-      const visibleProducts = activeCategory === "All"
-        ? products
-        : products.filter(function(p) { return p.category === activeCategory; });
-
-      document.getElementById("products").innerHTML = visibleProducts.map(function(p) {
+      document.getElementById("products").innerHTML = products.map(function(p) {
         const inCart = Number(cart[p.id] || 0);
         const remaining = Math.max(0, p.stock - inCart);
+
         return `
           <article class="product">
             <div class="fruit-art">${productArt(p)}</div>
             <h3>${safeText(p.name)}</h3>
             <div class="muted">${safeText(p.description)}</div>
             <div class="price">${money(p.price)}</div>
-            <div class="stock">${remaining} available</div>
-            <button class="primary" ${remaining <= 0 ? "disabled" : ""} onclick="addToCart(${p.id})">
-              ${remaining <= 0 ? "Out of listed stock" : "Add to Cart"}
+            <div class="stock">${p.stock} in listed stock</div>
+            <button class="primary" ${remaining <= 0 ? "disabled" : ""}
+              onclick="addToCart(${p.id})">
+              ${remaining <= 0 ? "Out of available stock" : "Add to Cart"}
             </button>
-          </article>`;
+          </article>
+        `;
       }).join("");
     }
 
     function addToCart(id) {
       const product = products.find(function(p) { return p.id === id; });
       if (!product) return;
+
       const qty = Number(cart[id] || 0);
       if (qty >= product.stock) {
         alert("You have reached the listed stock limit.");
         return;
       }
+
       cart[id] = qty + 1;
       saveCart();
       renderAll();
@@ -453,16 +446,24 @@
     function changeQty(id, amount) {
       const product = products.find(function(p) { return p.id === id; });
       if (!product) return;
+
       const next = Number(cart[id] || 0) + amount;
-      if (next <= 0) delete cart[id];
-      else if (next <= product.stock) cart[id] = next;
-      else alert("Not enough listed stock.");
+      if (next <= 0) {
+        delete cart[id];
+      } else if (next <= product.stock) {
+        cart[id] = next;
+      } else {
+        alert("Not enough listed stock.");
+      }
+
       saveCart();
       renderAll();
     }
 
     function getItems() {
-      return products.filter(function(p) { return Number(cart[p.id] || 0) > 0; });
+      return products.filter(function(p) {
+        return Number(cart[p.id] || 0) > 0;
+      });
     }
 
     function getTotal() {
@@ -473,25 +474,39 @@
 
     function renderCart() {
       const items = getItems();
-      const count = items.reduce(function(sum, p) { return sum + Number(cart[p.id] || 0); }, 0);
+      const count = items.reduce(function(sum, p) {
+        return sum + Number(cart[p.id] || 0);
+      }, 0);
+
       document.getElementById("cartCount").textContent = count;
       document.getElementById("total").textContent = money(getTotal());
+
       document.getElementById("cartItems").innerHTML = items.length
         ? items.map(function(p) {
-            return `<div class="cart-line">
-              <div><strong>${safeText(p.name)}</strong><br><span class="muted">${money(p.price)} each</span></div>
-              <div class="qty">
-                <button type="button" aria-label="Remove one" onclick="changeQty(${p.id}, -1)">−</button>
-                <span>${Number(cart[p.id])}</span>
-                <button type="button" aria-label="Add one" onclick="changeQty(${p.id}, 1)">+</button>
+            return `
+              <div class="cart-line">
+                <div>
+                  <strong>${safeText(p.name)}</strong><br>
+                  <span class="muted">${money(p.price)} each</span>
+                </div>
+                <div class="qty">
+                  <button type="button" aria-label="Remove one"
+                    onclick="changeQty(${p.id}, -1)">−</button>
+                  <span>${Number(cart[p.id])}</span>
+                  <button type="button" aria-label="Add one"
+                    onclick="changeQty(${p.id}, 1)">+</button>
+                </div>
               </div>
-            </div>`;
+            `;
           }).join("")
         : '<p class="muted">Your cart is empty. Add an item to begin.</p>';
+
       renderProducts();
     }
 
-    function renderAll() { renderCart(); }
+    function renderAll() {
+      renderCart();
+    }
 
     function goToCart() {
       document.getElementById("cart").scrollIntoView({ behavior: "smooth" });
@@ -507,9 +522,12 @@
       document.getElementById("cart").style.display = "none";
       document.getElementById("payment").style.display = "block";
       document.getElementById("payAmount").textContent = money(order.total);
+
       document.getElementById("orderSummary").innerHTML = order.items.map(function(item) {
-        return "<p>" + safeText(item.name) + " × " + item.qty + " — " + money(item.price * item.qty) + "</p>";
-      }).join("") + "<p><strong>Roblox username:</strong> " + safeText(order.roblox) + "</p>";
+        return "<p>" + safeText(item.name) + " × " + item.qty +
+          " — " + money(item.price * item.qty) + "</p>";
+      }).join("") + "<p><strong>Roblox username:</strong> " +
+        safeText(order.roblox) + "</p>";
 
       const qr = document.getElementById("qrImage");
       if (SHOP.qrImageUrl.startsWith("https://")) {
@@ -527,8 +545,11 @@
       const upiButton = document.getElementById("upiButton");
       if (SHOP.upiId && /^[\w.-]+@[\w.-]+$/.test(SHOP.upiId)) {
         const params = new URLSearchParams({
-          pa: SHOP.upiId, pn: SHOP.name, am: order.total.toFixed(2),
-          cu: "INR", tn: "Blox Fruits shop order"
+          pa: SHOP.upiId,
+          pn: SHOP.name,
+          am: order.total.toFixed(2),
+          cu: "INR",
+          tn: "Blox Fruits shop order"
         });
         upiButton.href = "upi://pay?" + params.toString();
         upiButton.style.display = "inline-block";
@@ -547,34 +568,45 @@
           alert("The shop owner needs to add the Discord invite link in the SHOP settings in the code.");
         };
       }
+
       document.getElementById("payment").scrollIntoView({ behavior: "smooth" });
     }
 
     document.getElementById("checkoutForm").addEventListener("submit", function(event) {
       event.preventDefault();
+
       const items = getItems();
       if (!items.length) {
         alert("Your cart is empty. Please add an item first.");
         return;
       }
+
       const roblox = document.getElementById("roblox").value.trim();
       const contact = document.getElementById("contact").value.trim();
+
       if (!roblox) {
         alert("Please enter your Roblox username.");
         return;
       }
+
       currentOrder = {
         roblox: roblox,
         contact: contact,
         total: getTotal(),
         items: items.map(function(p) {
-          return { id: p.id, name: p.name, price: p.price, qty: Number(cart[p.id]) };
+          return {
+            id: p.id,
+            name: p.name,
+            price: p.price,
+            qty: Number(cart[p.id])
+          };
         })
       };
+
       setupPayment(currentOrder);
     });
 
     renderAll();
   </script>
 </body>
-</html>
+</html> 
