@@ -1012,21 +1012,15 @@ function setupPayment(order) {
 
   }).join("")+"<p><strong>Roblox username:</strong> "+safeText(order.roblox)+"</p>";
 
-  const qr=document.getElementById("qrImage");
+  const qr = document.getElementById("qrImage");
 
-  if (SHOP.qrImageUrl.startsWith("https://")) {
-
-    qr.src=SHOP.qrImageUrl;
-
-    qr.style.display="block";
-
-  } else {
-
-    qr.removeAttribute("src");
-
-    qr.style.display="none";
-
-  }
+if (SHOP.qrImageUrl) {
+  qr.src = SHOP.qrImageUrl;
+  qr.style.display = "block";
+} else {
+  qr.removeAttribute("src");
+  qr.style.display = "none";
+}
 
   document.getElementById("upiText").textContent=SHOP.upiId
 
