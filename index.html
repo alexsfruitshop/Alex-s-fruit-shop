@@ -554,6 +554,9 @@ footer {
 
     <button class="category-btn" data-category="Perms" onclick="setCategory('Perms',this)">✨ Perms</button>
 
+    <button class="category-btn" data-category="Skins"
+  onclick="setCategory('Skins',this)">🎨 Skins</button>
+
   </div>
 
   <div class="section-title">
@@ -749,23 +752,50 @@ const products = [
 
 {id:38,name:"Perm Dough",price:1800,stock:0,image:"dough.png",description:"Permanent fruit",category:"Perms",note:"Alternate listed price"},
  
-  {id:39,name:"Fiend Yeti",price:830,stock:10,image:"IMG_6458.jpeg",description:"Physical fruit",category:"Fruits"},
+  {id:39,name:"Fiend Yeti",price:830,stock:10,image:"IMG_6458.jpeg",description:"Physical fruit",category:"Skins"},
 
-  {id:40,name:"Runic Fiend",price:1100,stock:10,image:"IMG_6455.jpeg",description:"Physical fruit",category:"Fruits"},
+  {id:40,name:"Runic Fiend",price:1100,stock:10,image:"IMG_6455.jpeg",description:"Physical fruit",category:"Skins"},
 
-  {id:41,name:"Divine Portal",price:1600,stock:10,image:"IMG_6453.jpeg",description:"Physical fruit",category:"Fruits"},
+  {id:41,name:"Divine Portal",price:1600,stock:10,image:"IMG_6453.jpeg",description:"Physical fruit",category:"Skins"},
 
-  {id:42,name:"Yellow Lightning",price:140,stock:10,image:"IMG_6452.jpeg",description:"Physical fruit",category:"Fruits"},
+  {id:42,name:"Yellow Lightning",price:140,stock:10,image:"IMG_6452.jpeg",description:"Physical fruit",category:"Skins"},
 
-  {id:43,name:"Torment Pain",price:120,stock:10,image:"IMG_6450.jpeg",description:"Physical fruit",category:"Fruits"},
+  {id:43,name:"Torment Pain",price:120,stock:10,image:"IMG_6450.jpeg",description:"Physical fruit",category:"Skins"},
 
-  {id:44,name:"Lime Blade",price:30,stock:10,image:"IMG_6451.jpeg",description:"Physical fruit",category:"Fruits"},
+  {id:44,name:"Lime Blade",price:30,stock:10,image:"IMG_6451.jpeg",description:"Physical fruit",category:"Skins"},
 
-  {id:45,name:"Celebration Bomb",price:30,stock:10,image:"IMG_6449.jpeg",description:"Physical fruit",category:"Fruits"},
+  {id:45,name:"Celebration Bomb",price:30,stock:10,image:"IMG_6449.jpeg",description:"Physical fruit",category:"Skins"},
 
   {id:46,name:"Control",price:170,stock:10,image:"IMG_6448.jpeg",description:"Physical fruit",category:"Fruits"},
 
   {id:47,name:"Magnet",price:350,stock:10,image:"IMG_6447.jpeg",description:"Physical fruit",category:"Fruits"}
+
+  {id:48,name:"Arcsteel Magnet",price:1800,stock:10,image:"IMG_6466.jpeg",description:"Fruit skin",category:"Skins"},
+  
+  {id:49,name:"Starlight Gravity",price:280,stock:10,image:"IMG_6467.jpeg",description:"Fruit skin",category:"Skins"},
+ 
+  {id:50,name:"Scarlet Ghost",price:30,stock:10,image:"IMG_6468.jpeg",description:"Fruit skin",category:"Skins"},
+ 
+  {id:51,name:"Green Lightning",price:260,stock:10,image:"IMG_6469.jpeg",description:"Fruit skin",category:"Skins"},
+ 
+  {id:52,name:"Red Lightning",price:1500,stock:10,image:"IMG_6470.jpeg",description:"Fruit skin",category:"Skins"},
+ 
+  {id:53,name:"Purple Lightning",price:3200,stock:10,image:"IMG_6471.jpeg",description:"Fruit skin",category:"Skins"},
+ 
+  {id:54,name:"Sadness Pain",price:380,stock:10,image:"IMG_6472.jpeg",description:"Fruit skin",category:"Skins"},
+ 
+  {id:55,name:"Frustration Pain",price:330,stock:10,image:"IMG_6473.jpeg",description:"Fruit skin",category:"Skins"},
+ 
+  {id:56,name:"Emerald Diamond",price:170,stock:10,image:"IMG_6477.jpeg",description:"Fruit skin",category:"Skins"},
+
+  {id:57,name:"Ruby Diamond",price:150,stock:10,image:"IMG_6478.jpeg",description:"Fruit skin",category:"Skins"},
+
+  {id:58,name:"Rose Quartz Diamond",price:280,stock:10,image:"IMG_6479.jpeg",description:"Fruit skin",category:"Skins"},
+ 
+  {id:59,name:"Topaz Diamond",price:30,stock:10,image:"IMG_6476.jpeg",description:"Fruit skin",category:"Skins"},
+ 
+  {id:60,name:"Super Spirit Pain",price:2500,stock:10,image:"IMG_6474.jpeg",description:"Fruit skin",category:"Skins"}
+
 ];
 
 let cart = {};
@@ -838,7 +868,9 @@ function setCategory(category,button) {
 
     Gamepasses:"🎮 Gamepasses",
 
-    Perms:"✨ Perms"
+    Perms:"✨ Perms",
+
+    Skins: "🎨 Fruit Skins"
 
   };
 
