@@ -1248,8 +1248,15 @@ function closeOffer() {
 }
 
 function claimOffer() {
+  discountClaimed = true;
+
   document.getElementById("offerMessage").textContent =
-    "No 30% discount is currently active. Join our Discord for real deals! ❤️";
+    "🎉 Congratulations! Your 30% discount has been claimed!";
+
+  renderAll();
+
+  localStorage.setItem("alexOfferSeen", "yes");
+  document.getElementById("offerPopup").style.display = "none";
 }
 
 window.addEventListener("load", function() {
@@ -1259,7 +1266,7 @@ window.addEventListener("load", function() {
 });
 
 renderAll();
-
+  
 </script>
   
 </body>
