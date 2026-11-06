@@ -976,19 +976,16 @@ function setCategory(category,button) {
 function renderProducts() {
 
   const visibleProducts = products.filter(function(p) {
-
     return activeCategory === "All" || p.category === activeCategory;
-
   });
 
   document.getElementById("products").innerHTML = visibleProducts.map(function(p) {
 
     const inCart = Number(cart[p.id] || 0);
-
     const remaining = Math.max(0,p.stock-inCart);
+    const price = discountClaimed ? p.price * 0.70 : p.price;
 
     return `
-
       <article class="product">
 
         <div class="fruit-art">${productArt(p)}</div>
@@ -997,12 +994,15 @@ function renderProducts() {
 
         <div class="muted">${safeText(p.description)}</div>
 
-        <div class="price">${money(p.price)}</div>
+        <div class="price">
+          ${discountClaimed
+            ? `<del>${money(p.price)}</del> <strong>${money(price)}</strong>`
+            : money(p.price)}
+        </div>
 
         <div class="stock">${p.stock} in listed stock</div>
 
         <button class="primary" ${remaining<=0?"disabled":""}
-
           onclick="addToCart(${p.id})">
 
           ${remaining<=0?"Out of available stock":"Add to Cart"}
@@ -1014,31 +1014,7 @@ function renderProducts() {
   }).join("");
 
 }
-
-function addToCart(id) {
-
-  const product = products.find(function(p) { return p.id===id; });
-
-  if (!product) return;
-
-  const qty = Number(cart[id] || 0);
-
-  if (qty>=product.stock) {
-
-    alert("You have reached the listed stock limit.");
-
-    return;
-
-  }
-
-  cart[id] = qty+1;
-
-  saveCart();
-
-  renderAll();
-
-}
-
+  
 function changeQty(id,amount) {
 
   const product = products.find(function(p) { return p.id===id; });
