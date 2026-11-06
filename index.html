@@ -892,7 +892,7 @@ const products = [
 ];
 
 let cart = {};
-let discountClaimed = false;
+let discountClaimed = localStorage.getItem("alexDiscountClaimed") === "yes";
 
 try {
 
