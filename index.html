@@ -1232,11 +1232,15 @@ document.getElementById("checkoutForm").addEventListener("submit",function(event
 
     items:items.map(function(p) {
 
-      return {id:p.id,name:p.name,price:p.price,qty:Number(cart[p.id])};
-
-    })
-
+  return {
+    id:p.id,
+    name:p.name,
+    price:discountClaimed ? p.price * 0.70 : p.price,
+    qty:Number(cart[p.id])
   };
+
+})
+      };
 
   setupPayment(currentOrder);
 
