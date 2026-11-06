@@ -489,27 +489,97 @@ input:focus {
 .center { text-align:center; }
 
 footer {
-
   text-align:center;
-
   color:var(--muted);
-
   padding:25px 10px;
-
   font-size:12px;
+}
 
+/* 30% OFF POPUP */
+
+#offerPopup {
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:#000c;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.offer-card {
+  width:100%;
+  max-width:360px;
+  text-align:center;
+  padding:30px 22px;
+  border:2px solid #ff2345;
+  border-radius:22px;
+  background:linear-gradient(145deg,#39000d,#151010);
+  box-shadow:0 0 35px #ff234566;
+  position:relative;
+  animation:offerPop .4s ease;
+}
+
+@keyframes offerPop {
+  from {
+    transform:scale(.7);
+    opacity:0;
+  }
+  to {
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+.offer-close {
+  position:absolute;
+  right:14px;
+  top:10px;
+  background:none;
+  border:0;
+  color:white;
+  font-size:25px;
+}
+
+.offer-discount {
+  font-size:48px;
+  font-weight:1000;
+  color:#ff5268;
+  margin:15px 0;
+  text-shadow:0 0 20px #ff2345;
+}
+
+.offer-card p {
+  color:#ddd;
+  line-height:1.5;
+}
+
+.offer-card button.claim {
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:12px;
+  background:linear-gradient(135deg,#ff2345,#96001d);
+  color:white;
+  font-weight:900;
+  font-size:16px;
 }
 
 @media(min-width:650px) {
+  .products {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:18px;
+  }
 
-  .products { grid-template-columns:repeat(3,minmax(0,1fr));gap:18px; }
+  .hero {
+    padding:42px;
+  }
 
-  .hero { padding:42px; }
-
-  .fruit-art { height:175px; }
-
+    .fruit-art {
+    height:175px;
+  }
 }
-
 </style>
 
 </head>
