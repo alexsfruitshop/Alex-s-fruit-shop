@@ -1072,26 +1072,26 @@ function renderCart() {
 
     ? items.map(function(p) {
 
-      return `
+return `
+  <div class="cart-line">
 
-        <div class="cart-line">
+    <div>
+      <strong>${safeText(p.name)}</strong><br>
+      <span class="muted">
+        ${discountClaimed
+          ? `<del>${money(p.price)}</del> <strong>${money(p.price * 0.70)}</strong>`
+          : money(p.price)} each
+      </span>
+    </div>
 
-          <div><strong>${safeText(p.name)}</strong><br>
+    <div class="qty">
+      <button type="button" aria-label="Remove one" onclick="changeQty(${p.id},-1)">−</button>
+      <span>${Number(cart[p.id])}</span>
+      <button type="button" aria-label="Add one" onclick="changeQty(${p.id},1)">+</button>
+    </div>
 
-            <span class="muted">${money(p.price)} each</span></div>
-
-          <div class="qty">
-
-            <button type="button" aria-label="Remove one" onclick="changeQty(${p.id},-1)">−</button>
-
-            <span>${Number(cart[p.id])}</span>
-
-            <button type="button" aria-label="Add one" onclick="changeQty(${p.id},1)">+</button>
-
-          </div>
-
-        </div>`;
-
+  </div>`;
+      
     }).join("")
 
     : '<p class="muted">Your cart is empty. Add an item to begin.</p>';
