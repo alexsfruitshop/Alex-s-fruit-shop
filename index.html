@@ -1067,11 +1067,13 @@ function getItems() {
 
 function getTotal() {
 
-  return getItems().reduce(function(sum,p) {
+  return getItems().reduce(function(sum, p) {
 
-    return sum+p.price*Number(cart[p.id] || 0);
+    const price = discountClaimed ? p.price * 0.70 : p.price;
 
-  },0);
+    return sum + price * Number(cart[p.id] || 0);
+
+  }, 0);
 
 }
 
