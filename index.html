@@ -1253,6 +1253,7 @@ function closeOffer() {
 
 function claimOffer() {
   discountClaimed = true;
+    localStorage.setItem("alexDiscountClaimed", "yes");
 
   document.getElementById("offerMessage").textContent =
     "🎉 Congratulations! Your 30% discount has been claimed!";
