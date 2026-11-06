@@ -1263,10 +1263,26 @@ document.getElementById("checkoutForm").addEventListener("submit",function(event
 
 });
 
+function closeOffer() {
+  document.getElementById("offerPopup").style.display = "none";
+  localStorage.setItem("alexOfferSeen", "yes");
+}
+
+function claimOffer() {
+  document.getElementById("offerMessage").textContent =
+    "No 30% discount is currently active. Join our Discord for real deals! ❤️";
+}
+
+window.addEventListener("load", function() {
+  if (!localStorage.getItem("alexOfferSeen")) {
+    document.getElementById("offerPopup").style.display = "flex";
+  }
+});
+
 renderAll();
 
 </script>
-
+  
 </body>
 
 </html>
