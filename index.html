@@ -1015,6 +1015,31 @@ function renderProducts() {
   }).join("");
 
 }
+
+  
+function addToCart(id) {
+
+  const product = products.find(function(p) {
+    return p.id === id;
+  });
+
+  if (!product) return;
+
+  const currentQty = Number(cart[id] || 0);
+
+  if (currentQty >= product.stock) {
+    alert("Not enough listed stock.");
+    return;
+  }
+
+  cart[id] = currentQty + 1;
+
+  saveCart();
+
+  renderAll();
+
+}
+
   
 function changeQty(id,amount) {
 
