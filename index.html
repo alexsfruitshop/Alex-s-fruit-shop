@@ -1248,14 +1248,13 @@ document.getElementById("checkoutForm").addEventListener("submit",function(event
 
 function closeOffer() {
   document.getElementById("offerPopup").style.display = "none";
-  localStorage.setItem("alexOfferSeen", "yes");
+  
 }
 
 function claimOffer() {
   document.getElementById("offerMessage").textContent =
     "🎉 Congratulations! Your offer has been claimed!";
 
-  localStorage.setItem("alexOfferSeen", "yes");
 
   document.getElementById("offerPopup").style.display = "none";
 }
