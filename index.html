@@ -1265,11 +1265,9 @@ function claimOffer() {
 }
 
 window.addEventListener("load", function() {
-  if (!localStorage.getItem("alexOfferSeen")) {
-    document.getElementById("offerPopup").style.display = "flex";
-  }
+  document.getElementById("offerPopup").style.display = "flex";
 });
-
+  
 renderAll();
   
 </script>
